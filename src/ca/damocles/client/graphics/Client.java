@@ -1,49 +1,61 @@
-package ca.damocles.client;
+package ca.damocles.client.graphics;
 
 import java.io.IOException;
 import java.net.Socket;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import ca.damocles.Packet;
 import ca.damocles.Packet.PacketEnum;
+import ca.damocles.client.ClientState;
+import ca.damocles.client.InputHandler;
+import ca.damocles.client.graphics.screen.LoginScreen;
 import ca.damocles.ServerConnection;
 import ca.damocles.SplashText;
 import ca.damocles.utils.ResourceUtil;
+import java.awt.BorderLayout;
 
-public class Client extends JPanel implements Runnable{
+public class Client extends JFrame implements Runnable{
+	
+	
+	public static Client instance;
+	public static Client getInstance() {
+		return instance;
+	}
 	
 	/* SERIAL VERSION UID */
 	private static final long serialVersionUID = 3550596793369075558L;
-	private final int WIDTH = 29, HEIGHT = 25;
-	private final int SCALE = 32;
 	public InputHandler inputHandler;
 	public ServerConnection connection;
 	public boolean connected = false;
 	public Thread thread;
 	
+	public ClientState state;
+	
+	private LoginScreen loginScreen;
+	
 	public Client(String toolBarMessage) {
+		super(toolBarMessage);
+		setIconImage(new ResourceUtil().getImage("/sprites", "Icon"));
+		setSize(804, 627);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
-		JFrame frame = new JFrame(toolBarMessage);
-		frame.setIconImage(new ResourceUtil().getImage("", "Icon"));
-		frame.setSize(WIDTH*SCALE, HEIGHT*SCALE);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.addWindowListener(new java.awt.event.WindowAdapter() {
+		this.loginScreen = new LoginScreen();
+		getContentPane().add(loginScreen, BorderLayout.CENTER);
+		setVisible(true);
+		
+		addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
             	stop();
             }
         });
-		frame.getContentPane().add(this);
-		frame.setVisible(true);
         
 		inputHandler = new InputHandler();
 
-		addKeyListener(inputHandler);
-		addFocusListener(inputHandler);
+		//addKeyListener(inputHandler);
+		//addFocusListener(inputHandler);
 		
 		try {
 			Socket clientSocket = new Socket("localhost", 8888);
@@ -82,8 +94,7 @@ public class Client extends JPanel implements Runnable{
 			delta += (now - lastTime) / secondsPerTicks;
 			lastTime = now;
 			if(delta >= 1) {
-				requestFocus();
-				repaint();
+				//repaint();
 				//if(InputHandler.keys[KeyEvent.VK_SPACE])
 				delta--;
 			}
@@ -91,7 +102,10 @@ public class Client extends JPanel implements Runnable{
 	}
 	
 	public static void main(String[] args) {
-		new Client("TopDownShooter: " + new SplashText().get());
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+            	instance = new Client("TopDownShooter: " + new SplashText().get());
+            }
+        });
 	}	
-	
 }

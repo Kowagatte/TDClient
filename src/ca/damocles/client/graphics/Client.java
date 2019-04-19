@@ -25,6 +25,7 @@ public class Client extends JFrame implements Runnable{
 	/* SERIAL VERSION UID */
 	private static final long serialVersionUID = 3550596793369075558L;
 	public InputHandler inputHandler;
+	private final String SERVER_ADDRESS = "localhost";
 	public ServerConnection connection;
 	public boolean connected = false;
 	public Thread thread;
@@ -40,30 +41,33 @@ public class Client extends JFrame implements Runnable{
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		
-		this.loginScreen = new LoginScreen();
-		getContentPane().add(loginScreen, BorderLayout.CENTER);
 		setVisible(true);
-		
 		addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
             	stop();
             }
         });
-        
 		inputHandler = new InputHandler();
-
 		//addKeyListener(inputHandler);
 		//addFocusListener(inputHandler);
-		
+		initializeScreens();
+		connectToServer();
+	}
+	
+	public void connectToServer() {
 		try {
-			Socket clientSocket = new Socket("localhost", 8888);
+			Socket clientSocket = new Socket(SERVER_ADDRESS, 8888);
 			if(clientSocket.isConnected()) {
 				connection = new ServerConnection(clientSocket);
 				start();
 			}
 		}catch (IOException e) { System.exit(0); }
+	}
+	
+	public void initializeScreens() {
+		this.loginScreen = new LoginScreen();
+		getContentPane().add(loginScreen, BorderLayout.CENTER);
 	}
 	
 	public synchronized void start() {

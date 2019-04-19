@@ -53,13 +53,14 @@ public class ServerConnection extends Thread{
     	while(socket.isConnected()) {
     		try {
     			String line = buffReader.readLine();
+    			System.out.println(line);
         		packet = new Packet(line);
         		
-        		if(packet.getEnum() == PacketEnum.INFORMATION_PACKET) {
+        		if(packet.getEnum() == PacketEnum.INFO) {
         			System.out.print(packet.getArgs()[0]);
         		}
         		
-        		if( (packet.getEnum() == PacketEnum.DENIED_PACKET) || (packet.getEnum() == PacketEnum.CLOSE_PACKET) ) {
+        		if( (packet.getEnum() == PacketEnum.DENIED) || (packet.getEnum() == PacketEnum.CLOSE) ) {
         			closeConnection();
         			System.exit(0);
         		}

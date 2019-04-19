@@ -84,7 +84,7 @@ public class Client extends JFrame implements Runnable{
 	public void stop() {
 		if(!connected) return;
 		connected = false;
-		connection.send(new Packet(PacketEnum.CLOSE_PACKET));
+		connection.send(new Packet(PacketEnum.CLOSE));
 		try {
 			thread.interrupt();
 		}catch(SecurityException e) {e.printStackTrace();}

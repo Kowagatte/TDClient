@@ -33,13 +33,7 @@ public class Packet {
 	 */
 	public Packet(String rawPacket) {
 		String[] fragments = rawPacket.split(";");
-		PacketEnum currentPacket = null;
-		for(PacketEnum pack : PacketEnum.values()) {
-			if(fragments[0].equals(pack.getPacketName())){
-				currentPacket = pack;
-				break;
-			}
-		}
+		PacketEnum currentPacket = PacketEnum.valueof(Byte.valueOf(fragments[0]));
 		String[] arguments = new String[fragments.length-1];
 		int i = 0;
 		for(String s : fragments) {
@@ -73,7 +67,7 @@ public class Packet {
 	 * @return (String) Packet formatted as string.
 	 */
 	public String sendPacket() {
-		String builtPacket = packet.getPacketName();
+		String builtPacket = String.valueOf(packet.getID());
 		int argsAmount = packet.getPacketArguments();
 		for(int i = 0; i < argsAmount; i++) {
 			builtPacket = builtPacket+";"+args[i];
@@ -86,23 +80,22 @@ public class Packet {
 	 * @author Nicholas Ryan
 	 */
 	public enum PacketEnum{
-		RENDER_TILE_PACKET("RENDER", "ID;X;Y", 3),
-		RENDER_PLAYER_PACKET("PLAYER", "ID;DIRECTION;X;Y", 4),
-		RENDER_SPRITE_PACKET("SPRITE", "TYPE;ID;X;Y", 4),
-		COIN_VISABLE_PACKET("COINVISABLE", "ID;BOOLEAN", 2),
-		INPUT_PACKET("INPUT", "ID", 1),
-		TIME_PACKET("TIME", "TIME", 1),
-		SCORE_PACKET("SCORE", "ID;SCORE", 2),
-		CLOSE_PACKET("CLOSE", "CLOSE", 0),
-		DENIED_PACKET("DENIED", "DENIED", 0),
-		INFORMATION_PACKET("INFORMATION", "INFO", 1),
-		LOGIN_STATUS_PACKET("LOGINSTATUS", "ID", 1),
-		ACCOUNT_CREATION_STATUS_PACKET("ACCOUNTCREATIONSTATUS", "ID", 1),
-		ACCOUNT_CREATION_PACKET("ACCOUNTCREATION", "USERNAME;PASSWORD", 2),
-		LOGIN_CREDENTIALS("LOGINCREDENTIALS", "USERNAME;PASSWORD", 2),
-		CLIENT_STATUS_PACKET("CLIENTSTATUS", "STATUS", 1),
-		CONNECTING_PACKET("CONNECTINGSTATUS", "BOOLEAN", 1);
-		private String packetname;
+		RENDER_TILE((byte) 0, "ID;X;Y", 3),
+		RENDER_PLAYER((byte) 1, "ID;DIRECTION;X;Y", 4),
+		COIN_VISABLE((byte) 2, "ID;BOOLEAN", 2),
+		INPUT((byte) 3, "ID", 1),
+		TICK((byte) 4, "TICK", 1),
+		SCORE((byte) 5, "ID;SCORE", 2),
+		CLOSE((byte) 6, "CLOSE", 0),
+		DENIED((byte) 7, "DENIED", 0),
+		INFO((byte) 8, "INFO", 1),
+		LOGIN_STATUS((byte) 9, "ID", 1),
+		ACCOUNT_CREATION_STATUS((byte) 10, "ID", 1),
+		ACCOUNT_CREATION((byte) 11, "USERNAME;PASSWORD", 2),
+		LOGIN_CREDENTIALS((byte) 12, "USERNAME;PASSWORD", 2),
+		CLIENT_STATUS((byte) 13, "STATUS", 1),
+		CONNECTING_STATUS((byte) 14, "BOOLEAN", 1);
+		private byte id;
 		private String structure;
 		private int args;
 		/**
@@ -110,15 +103,16 @@ public class Packet {
 		 * @param structure Structure of the arguments
 		 * @param args amount of arguments in the given packet
 		 */
-		PacketEnum(String packetname, String structure, int args){
-			this.packetname = packetname;
+		PacketEnum(byte id, String structure, int args){
+			this.id = id;
 			this.structure = structure;
 			this.args = args;
 		}
+		
 		/**
-		 * @return (string) packets name
+		 * @return byte packetID
 		 */
-		public String getPacketName() { return this.packetname; }
+		public byte getID() { return this.id; }
 		/**
 		 * @return (String) packet structure in string format
 		 */
@@ -127,6 +121,15 @@ public class Packet {
 		 * @return (int) number of arguments this packet holds
 		 */
 		public int getPacketArguments() { return this.args; }
+		
+		public static PacketEnum valueof(byte id) {
+			for(PacketEnum e : PacketEnum.values()) {
+				if(e.getID() == id) {
+					return e;
+				}
+			}
+			return null;
+		}
 	}
 	
 }

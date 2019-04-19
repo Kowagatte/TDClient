@@ -42,6 +42,7 @@ public class LoginScreen extends JLayeredPane{
 		add(passwordField);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setFocusable(false);
 		btnLogin.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -52,6 +53,7 @@ public class LoginScreen extends JLayeredPane{
 		add(btnLogin);
 		
 		JButton btnCreateAccount = new JButton("Create Account");
+		btnCreateAccount.setFocusable(false);
 		btnCreateAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}

@@ -3,6 +3,9 @@ package ca.damocles.client.graphics;
 import java.io.IOException;
 import java.net.Socket;
 
+import javax.net.ssl.SSLParameters;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 import javax.swing.JFrame;
 import ca.damocles.Packet;
 import ca.damocles.Packet.PacketEnum;
@@ -57,7 +60,8 @@ public class Client extends JFrame implements Runnable{
 	
 	public void connectToServer() {
 		try {
-			Socket clientSocket = new Socket(SERVER_ADDRESS, 8888);
+			SSLSocket clientSocket = (SSLSocket) SSLSocketFactory.getDefault().createSocket(SERVER_ADDRESS, 8888);
+			//Socket clientSocket = new Socket(SERVER_ADDRESS, 8888);
 			if(clientSocket.isConnected()) {
 				connection = new ServerConnection(clientSocket);
 				start();
@@ -106,6 +110,8 @@ public class Client extends JFrame implements Runnable{
 	}
 	
 	public static void main(String[] args) {
+		System.setProperty("javax.net.ssl.trustStore", "clienttruststore.pfx");
+		System.setProperty("javax.net.ssl.trustStorePassword", "oPkiCv43");
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
             	instance = new Client("TopDownShooter: " + new SplashText().get());

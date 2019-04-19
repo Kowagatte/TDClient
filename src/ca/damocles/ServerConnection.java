@@ -1,38 +1,36 @@
 package ca.damocles;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.net.Socket;
+import java.io.OutputStreamWriter;
+import javax.net.ssl.SSLSocket;
 
 import ca.damocles.Packet.PacketEnum;
 
 public class ServerConnection extends Thread{
 
-	protected Socket socket;
-	private InputStream inputStream;
+	protected SSLSocket socket;
+	private BufferedWriter buffWriter;
 	private BufferedReader buffReader;
-	private PrintStream outputStream;
 
-	public ServerConnection(Socket clientSocket) {
+	public ServerConnection(SSLSocket clientSocket) {
         this.socket = clientSocket;
         try {
-            inputStream = socket.getInputStream();
-            buffReader = new BufferedReader(new InputStreamReader(inputStream));
-            outputStream = new PrintStream(socket.getOutputStream());
+        	clientSocket.startHandshake();
+        	buffWriter = new BufferedWriter( new OutputStreamWriter( socket.getOutputStream() ) );
+        	buffReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        	start();
         } catch (IOException e) {
             return;
         }
-        start();
     }
     
     public void closeConnection() {
     	try {
     		socket.close();
-    		inputStream.close();
-    		outputStream.close();
+    		buffWriter.close();
     		buffReader.close();
     		interrupt();
     	}catch(IOException e) {
@@ -41,27 +39,30 @@ public class ServerConnection extends Thread{
     }
     
     public void send(Packet packet) {
-    	outputStream.println(packet.sendPacket());
+    	try {
+			buffWriter.write(packet.sendPacket());
+	    	buffWriter.newLine();
+	    	buffWriter.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
     
     public void run() {
     	Packet packet = null;
     	while(socket.isConnected()) {
     		try {
-    			if(buffReader.ready()) {
-            			String line = buffReader.readLine();
-                			packet = new Packet(line);
-                			
-                			if(packet.getEnum() == PacketEnum.INFORMATION_PACKET) {
-                				System.out.print(packet.getArgs()[0]);
-                			}
-                			
-                			if( (packet.getEnum() == PacketEnum.DENIED_PACKET) || (packet.getEnum() == PacketEnum.CLOSE_PACKET) ) {
-                				closeConnection();
-                				System.exit(0);
-                			}
-    				
-    			}
+    			String line = buffReader.readLine();
+        		packet = new Packet(line);
+        		
+        		if(packet.getEnum() == PacketEnum.INFORMATION_PACKET) {
+        			System.out.print(packet.getArgs()[0]);
+        		}
+        		
+        		if( (packet.getEnum() == PacketEnum.DENIED_PACKET) || (packet.getEnum() == PacketEnum.CLOSE_PACKET) ) {
+        			closeConnection();
+        			System.exit(0);
+        		}
     		}catch(IOException e) { interrupt(); }
     	}
     }

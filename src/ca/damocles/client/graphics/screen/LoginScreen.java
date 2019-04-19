@@ -46,6 +46,7 @@ public class LoginScreen extends JLayeredPane{
 		btnLogin.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//TODO SEND LOGIN INFORMATION
 			}
 		});
 		setLayer(btnLogin, 1);
@@ -56,6 +57,7 @@ public class LoginScreen extends JLayeredPane{
 		btnCreateAccount.setFocusable(false);
 		btnCreateAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//TODO SEND CREATE ACCOUNT INFOMRATION
 			}
 		});
 		btnCreateAccount.setFont(new Font("Comic Sans MS", Font.BOLD, 11));

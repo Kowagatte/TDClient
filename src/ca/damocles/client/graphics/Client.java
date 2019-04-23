@@ -1,9 +1,6 @@
 package ca.damocles.client.graphics;
 
 import java.io.IOException;
-import java.net.Socket;
-
-import javax.net.ssl.SSLParameters;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import javax.swing.JFrame;

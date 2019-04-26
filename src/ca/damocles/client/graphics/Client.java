@@ -8,6 +8,7 @@ import ca.damocles.Packet;
 import ca.damocles.Packet.PacketEnum;
 import ca.damocles.client.ClientState;
 import ca.damocles.client.InputHandler;
+import ca.damocles.client.graphics.screen.CreateAccountScreen;
 import ca.damocles.client.graphics.screen.LoginScreen;
 import ca.damocles.ServerConnection;
 import ca.damocles.SplashText;
@@ -33,6 +34,7 @@ public class Client extends JFrame implements Runnable{
 	public ClientState state;
 	
 	private LoginScreen loginScreen;
+	private CreateAccountScreen accountScreen;
 	
 	public Client(String toolBarMessage) {
 		super(toolBarMessage);
@@ -53,12 +55,12 @@ public class Client extends JFrame implements Runnable{
 		//addFocusListener(inputHandler);
 		initializeScreens();
 		connectToServer();
+		changeState(ClientState.LOGIN_SCREEN);
 	}
 	
 	public void connectToServer() {
 		try {
 			SSLSocket clientSocket = (SSLSocket) SSLSocketFactory.getDefault().createSocket(SERVER_ADDRESS, 8888);
-			//Socket clientSocket = new Socket(SERVER_ADDRESS, 8888);
 			if(clientSocket.isConnected()) {
 				connection = new ServerConnection(clientSocket);
 				start();
@@ -68,7 +70,7 @@ public class Client extends JFrame implements Runnable{
 	
 	public void initializeScreens() {
 		this.loginScreen = new LoginScreen();
-		getContentPane().add(loginScreen, BorderLayout.CENTER);
+		this.accountScreen = new CreateAccountScreen();
 	}
 	
 	public synchronized void start() {
@@ -88,6 +90,30 @@ public class Client extends JFrame implements Runnable{
 		 connection.closeConnection();
 		 System.exit(0);
 	}
+	
+	public void changeState(ClientState newState) {
+		state = newState;
+		getContentPane().removeAll();
+		setScreen();
+		validate();
+	}
+	
+	public void setScreen() {
+		switch(state) {
+			case CLIENT:
+				break;
+			case CREATE_ACCOUNT:
+				getContentPane().add(accountScreen, BorderLayout.CENTER);
+			case FORGOT_PASSWORD:
+				break;
+			case IN_GAME:
+				break;
+			case LOGIN_SCREEN:
+				getContentPane().add(loginScreen, BorderLayout.CENTER);
+			default:
+				break;
+		}
+	}
 
 	@Override
 	public void run() {
@@ -99,7 +125,7 @@ public class Client extends JFrame implements Runnable{
 			delta += (now - lastTime) / secondsPerTicks;
 			lastTime = now;
 			if(delta >= 1) {
-				//repaint();
+				repaint();
 				//if(InputHandler.keys[KeyEvent.VK_SPACE])
 				delta--;
 			}

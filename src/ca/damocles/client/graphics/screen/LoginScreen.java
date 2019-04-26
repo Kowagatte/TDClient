@@ -12,6 +12,10 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import ca.damocles.Packet;
+import ca.damocles.Packet.PacketEnum;
+import ca.damocles.client.ClientState;
+import ca.damocles.client.graphics.Client;
 import ca.damocles.utils.ResourceUtil;
 import javax.swing.JTextPane;
 
@@ -47,7 +51,9 @@ public class LoginScreen extends JLayeredPane{
 		btnLogin.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO SEND LOGIN INFORMATION
+				if((!txtUsername.getText().equalsIgnoreCase("")) && (!String.valueOf(passwordField.getPassword()).equalsIgnoreCase(""))) {
+					Client.getInstance().connection.send(new Packet(PacketEnum.LOGIN_CREDENTIALS, new String[] {txtUsername.getText(), String.valueOf(passwordField.getPassword())}));
+				}
 			}
 		});
 		setLayer(btnLogin, 1);
@@ -122,7 +128,7 @@ public class LoginScreen extends JLayeredPane{
 		btnCreateaccbutton.setContentAreaFilled(false);
 		btnCreateaccbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO Create account
+				Client.getInstance().changeState(ClientState.CREATE_ACCOUNT);
 			}
 		});
 		setLayer(btnCreateaccbutton, 1);

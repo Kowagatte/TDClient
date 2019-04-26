@@ -1,9 +1,12 @@
 package ca.damocles.client;
 
 public enum ClientState {
+	
 	LOGIN_SCREEN((byte)0),
-	CLIENT((byte)1),
-	IN_GAME((byte)2);
+	FORGOT_PASSWORD((byte)1),
+	CREATE_ACCOUNT((byte)2),
+	CLIENT((byte)3),
+	IN_GAME((byte)4);
 	
 	byte id;
 	ClientState(byte id) {

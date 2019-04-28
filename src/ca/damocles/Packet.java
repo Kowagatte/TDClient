@@ -47,6 +47,28 @@ public class Packet {
 	}
 	
 	/**
+	 * Determines if the packet is a valid format for a packet.
+	 * @return whether the packet is presumed to be valid or not.
+	 */
+	public static boolean isValid(String rawPacket) {
+		String[] fragments = rawPacket.split(";");
+		if(fragments.length > 0) {
+			PacketEnum currentPacket = PacketEnum.valueof(Byte.valueOf(fragments[0]));
+			if(currentPacket != null) {
+				if((fragments.length - 1) == currentPacket.getNumberOfArgs()) {
+					for(String frag : fragments) {
+						if(frag.equalsIgnoreCase("")) {
+							return false;
+						}
+					}
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
 	 * Returns the PacketEnum of the packet you have constructed.
 	 * @return (PacketEnum) type of this packet.
 	 */
@@ -68,7 +90,7 @@ public class Packet {
 	 */
 	public String sendPacket() {
 		String builtPacket = String.valueOf(packet.getID());
-		int argsAmount = packet.getPacketArguments();
+		int argsAmount = packet.getNumberOfArgs();
 		for(int i = 0; i < argsAmount; i++) {
 			builtPacket = builtPacket+";"+args[i];
 		}
@@ -120,7 +142,7 @@ public class Packet {
 		/**
 		 * @return (int) number of arguments this packet holds
 		 */
-		public int getPacketArguments() { return this.args; }
+		public int getNumberOfArgs() { return this.args; }
 		
 		public static PacketEnum valueof(byte id) {
 			for(PacketEnum e : PacketEnum.values()) {

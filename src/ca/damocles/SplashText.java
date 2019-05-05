@@ -14,7 +14,8 @@ public class SplashText {
 			"Tom you know what you did wrong",
 			"I'm sorry Dave, I'm afraid I cant do that.",
 			"Use the force",
-			"Now with coins!"
+			"Now with coins!",
+			"Luc was here"
 	};
 	
 	public SplashText() {

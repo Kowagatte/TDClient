@@ -116,8 +116,9 @@ public class Packet {
 		ACCOUNT_CREATION((byte) 11, "EMAIL;USERNAME;PASSWORD", 3),
 		LOGIN_CREDENTIALS((byte) 12, "USERNAME;PASSWORD", 2),
 		FORGOT_PASSWORD_REQUEST((byte) 13, "USERNAME", 1),
-		CLIENT_STATUS((byte) 14, "STATUS", 1),
-		CONNECTING_STATUS((byte) 15, "BOOLEAN", 1);
+		CHANGE_PASSWORD_REQUEST((byte) 14, "USERNAME;PASSWORD", 1),
+		CLIENT_STATUS((byte) 15, "STATUS", 1),
+		CONNECTING_STATUS((byte) 16, "BOOLEAN", 1);
 		private byte id;
 		private String structure;
 		private int args;

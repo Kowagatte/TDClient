@@ -16,7 +16,6 @@ import ca.damocles.Packet;
 import ca.damocles.Packet.PacketEnum;
 import ca.damocles.client.ClientState;
 import ca.damocles.client.graphics.Client;
-import ca.damocles.utils.ResourceUtil;
 import javax.swing.JTextPane;
 
 public class LoginScreen extends JLayeredPane{
@@ -28,12 +27,9 @@ public class LoginScreen extends JLayeredPane{
 	
 	private JTextField txtUsername;
 	private JPasswordField passwordField;
+	public String text = "";
 	
 	public LoginScreen() {
-		JLabel background = new JLabel("");
-		background.setIcon(new ImageIcon(new ResourceUtil().getImage("/sprites", "login-screen")));
-		background.setBounds(0, 0, 800, 600);
-		add(background);
 		
 		txtUsername = new JTextField();
 		setLayer(txtUsername, 1);
@@ -57,7 +53,7 @@ public class LoginScreen extends JLayeredPane{
 			}
 		});
 		setLayer(btnLogin, 1);
-		btnLogin.setBounds(290, 332, 220, 28);
+		btnLogin.setBounds(290, 357, 220, 28);
 		add(btnLogin);
 		
 		JLabel lblUsername = new JLabel("Username:");
@@ -82,7 +78,7 @@ public class LoginScreen extends JLayeredPane{
 		forgotpassword.setForeground(Color.LIGHT_GRAY);
 		forgotpassword.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
 		forgotpassword.setText("Forgot your password?");
-		forgotpassword.setBounds(290, 370, 131, 20);
+		forgotpassword.setBounds(290, 395, 131, 20);
 		add(forgotpassword);
 		
 		JButton btnForgotpassbutton = new JButton("Click Here");
@@ -102,7 +98,7 @@ public class LoginScreen extends JLayeredPane{
 			}
 		});
 		setLayer(btnForgotpassbutton, 1);
-		btnForgotpassbutton.setBounds(410, 371, 89, 23);
+		btnForgotpassbutton.setBounds(410, 396, 89, 23);
 		add(btnForgotpassbutton);
 		
 		JTextPane txtpnCreateaccount = new JTextPane();
@@ -112,7 +108,7 @@ public class LoginScreen extends JLayeredPane{
 		txtpnCreateaccount.setEditable(false);
 		setLayer(txtpnCreateaccount, 1);
 		txtpnCreateaccount.setText("Don't have an account?");
-		txtpnCreateaccount.setBounds(290, 401, 156, 20);
+		txtpnCreateaccount.setBounds(290, 426, 156, 20);
 		add(txtpnCreateaccount);
 		
 		JButton btnCreateaccbutton = new JButton("Click Here");
@@ -132,7 +128,27 @@ public class LoginScreen extends JLayeredPane{
 			}
 		});
 		setLayer(btnCreateaccbutton, 1);
-		btnCreateaccbutton.setBounds(410, 401, 89, 23);
+		btnCreateaccbutton.setBounds(410, 426, 89, 23);
 		add(btnCreateaccbutton);
+		
+		JLabel lblBg = new JLabel("bg");
+		setLayer(lblBg, -1);
+		lblBg.setIcon(new ImageIcon(LoginScreen.class.getResource("/sprites/login-screen.png")));
+		lblBg.setBounds(0, 0, 800, 600);
+		add(lblBg);
+		
+		JLabel lblTextBox = new JLabel("Box");
+		lblTextBox.setIcon(new ImageIcon(LoginScreen.class.getResource("/sprites/GenericTextField.png")));
+		lblTextBox.setBounds(247, 181, 306, 287);
+		add(lblTextBox);
+		
+		JLabel lblTxt = new JLabel("");
+		lblTxt.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblTxt.setName("field");
+		lblTxt.setText(text);
+		setLayer(lblTxt, 1);
+		lblTxt.setForeground(Color.WHITE);
+		lblTxt.setBounds(290, 317, 220, 37);
+		add(lblTxt);
 	}
 }

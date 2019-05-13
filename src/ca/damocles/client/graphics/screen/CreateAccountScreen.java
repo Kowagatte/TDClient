@@ -19,7 +19,7 @@ public class CreateAccountScreen extends JLayeredPane{
 	
 	public CreateAccountScreen() {
 		JLabel bg = new JLabel("");
-		bg.setIcon(new ImageIcon(CreateAccountScreen.class.getResource("/sprites/create-account-screen.png")));
+		bg.setIcon(new ImageIcon(CreateAccountScreen.class.getResource("/sprites/login-screen.png")));
 		bg.setBounds(0, 0, 800, 600);
 		add(bg);
 		
@@ -96,6 +96,12 @@ public class CreateAccountScreen extends JLayeredPane{
 		setLayer(btnBack, 1);
 		btnBack.setBounds(437, 450, 73, 33);
 		add(btnBack);
+		
+		JLabel lblTextBox = new JLabel("New label");
+		setLayer(lblTextBox, 1);
+		lblTextBox.setIcon(new ImageIcon(CreateAccountScreen.class.getResource("/sprites/AccountTextField.png")));
+		lblTextBox.setBounds(247, 181, 306, 325);
+		add(lblTextBox);
 	}
 
 	/** Generated sVUID */

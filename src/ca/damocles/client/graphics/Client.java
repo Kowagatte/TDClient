@@ -4,6 +4,9 @@ import java.io.IOException;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+
 import ca.damocles.Packet;
 import ca.damocles.Packet.PacketEnum;
 import ca.damocles.client.ClientState;
@@ -14,9 +17,10 @@ import ca.damocles.ServerConnection;
 import ca.damocles.SplashText;
 import ca.damocles.utils.ResourceUtil;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 
 public class Client extends JFrame implements Runnable{
-	
 	
 	public static Client instance;
 	public static Client getInstance() {
@@ -98,18 +102,58 @@ public class Client extends JFrame implements Runnable{
 		validate();
 	}
 	
+	public JLayeredPane getActivePane() {
+		switch(state) {
+		case CLIENT:
+			break;
+		case CREATE_ACCOUNT:
+			break;
+		case IN_GAME:
+			break;
+		case LOGIN_SCREEN:
+			return loginScreen;
+		case PASSWORD_CHANGE:
+			break;
+		case PASSWORD_MENU:
+			break;
+		case PASSWORD_REQUEST:
+			break;
+		default:
+			break;
+		}
+		return null;
+	}
+	
+	public void changeText(String text) {
+		if(getActivePane() != null) {
+			for(Component comp : getActivePane().getComponents()) {
+				if(comp.getName() != null) {
+					if(comp.getName().equalsIgnoreCase("field")) {
+						((JLabel)comp).setForeground(Color.RED);
+						((JLabel) comp).setText(text);
+						comp.repaint();
+					}
+				}
+			}
+		}
+	}
+	
 	public void setScreen() {
 		switch(state) {
 			case CLIENT:
 				break;
 			case CREATE_ACCOUNT:
 				getContentPane().add(accountScreen, BorderLayout.CENTER);
-			case FORGOT_PASSWORD:
-				break;
 			case IN_GAME:
 				break;
 			case LOGIN_SCREEN:
 				getContentPane().add(loginScreen, BorderLayout.CENTER);
+			case PASSWORD_CHANGE:
+				break;
+			case PASSWORD_MENU:
+				break;
+			case PASSWORD_REQUEST:
+				break;
 			default:
 				break;
 		}
@@ -140,5 +184,6 @@ public class Client extends JFrame implements Runnable{
             	instance = new Client("TopDownShooter: " + new SplashText().get());
             }
         });
-	}	
+	}
+
 }

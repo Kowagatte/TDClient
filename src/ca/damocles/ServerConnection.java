@@ -8,6 +8,8 @@ import java.io.OutputStreamWriter;
 import javax.net.ssl.SSLSocket;
 
 import ca.damocles.Packet.PacketEnum;
+import ca.damocles.client.graphics.Client;
+import ca.damocles.utils.AccountLoginStatus;
 
 public class ServerConnection extends Thread{
 
@@ -57,7 +59,13 @@ public class ServerConnection extends Thread{
         		packet = new Packet(line);
         		
         		if(packet.getEnum() == PacketEnum.INFO) {
-        			System.out.print(packet.getArgs()[0]);
+        			Client.getInstance().changeText(packet.getArgs()[0]);
+        		}
+        		
+        		if(packet.getEnum() == PacketEnum.LOGIN_STATUS) {
+        			if(Byte.valueOf(packet.getArgs()[0]) != ((byte)1)) {
+        				Client.getInstance().changeText(AccountLoginStatus.valueOf(Byte.valueOf(packet.getArgs()[0])).getDescription());
+        			}
         		}
         		
         		if( (packet.getEnum() == PacketEnum.DENIED) || (packet.getEnum() == PacketEnum.CLOSE) ) {

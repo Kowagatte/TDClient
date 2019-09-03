@@ -9,13 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.JTextField;
 
-import ca.damocles.client.ClientState;
-import ca.damocles.client.graphics.Client;
-
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
-public class CreateAccountScreen extends JLayeredPane{
+public class CreateAccountScreen extends JLayeredPane implements Screen{
 	
 	public CreateAccountScreen() {
 		JLabel bg = new JLabel("");
@@ -90,7 +87,7 @@ public class CreateAccountScreen extends JLayeredPane{
 		btnBack.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Client.getInstance().changeState(ClientState.LOGIN_SCREEN);
+				//Client.getInstance().changeState(ClientState.LOGIN_SCREEN);
 			}
 		});
 		setLayer(btnBack, 1);
@@ -110,4 +107,5 @@ public class CreateAccountScreen extends JLayeredPane{
 	private JTextField usernameField;
 	private JPasswordField pwdPassword;
 	private JPasswordField verifyField;
+	
 }

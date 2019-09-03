@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
-public class PasswordChangeScreen extends JLayeredPane{
+public class PasswordChangeScreen extends JLayeredPane implements Screen{
 	
 	/** SVUID */
 	private static final long serialVersionUID = 7698044961435756069L;
@@ -51,7 +51,7 @@ public class PasswordChangeScreen extends JLayeredPane{
 		txtUsername.setBounds(290, 287, 220, 28);
 		add(txtUsername);
 		
-		JLabel lblPassword = new JLabel("Password:");
+		JLabel lblPassword = new JLabel("New Password:");
 		setLayer(lblPassword, 1);
 		lblPassword.setForeground(Color.LIGHT_GRAY);
 		lblPassword.setFont(new Font("Comic Sans MS", Font.BOLD, 18));

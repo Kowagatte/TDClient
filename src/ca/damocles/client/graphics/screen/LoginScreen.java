@@ -14,11 +14,10 @@ import javax.swing.JTextField;
 
 import ca.damocles.Packet;
 import ca.damocles.Packet.PacketEnum;
-import ca.damocles.client.ClientState;
 import ca.damocles.client.graphics.Client;
 import javax.swing.JTextPane;
 
-public class LoginScreen extends JLayeredPane{
+public class LoginScreen extends JLayeredPane implements Screen{
 
 	/**
 	 * Generated SVUID
@@ -27,7 +26,6 @@ public class LoginScreen extends JLayeredPane{
 	
 	private JTextField txtUsername;
 	private JPasswordField passwordField;
-	public String text = "";
 	
 	public LoginScreen() {
 		
@@ -94,7 +92,7 @@ public class LoginScreen extends JLayeredPane{
 		btnForgotpassbutton.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnForgotpassbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO Forgot Password
+				Client.getInstance().changeScreen(new PasswordRequestScreen());
 			}
 		});
 		setLayer(btnForgotpassbutton, 1);
@@ -124,7 +122,7 @@ public class LoginScreen extends JLayeredPane{
 		btnCreateaccbutton.setContentAreaFilled(false);
 		btnCreateaccbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Client.getInstance().changeState(ClientState.CREATE_ACCOUNT);
+				Client.getInstance().changeScreen(new CreateAccountScreen());
 			}
 		});
 		setLayer(btnCreateaccbutton, 1);
@@ -145,7 +143,7 @@ public class LoginScreen extends JLayeredPane{
 		JLabel lblTxt = new JLabel("");
 		lblTxt.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblTxt.setName("field");
-		lblTxt.setText(text);
+		lblTxt.setText("");
 		setLayer(lblTxt, 1);
 		lblTxt.setForeground(Color.WHITE);
 		lblTxt.setBounds(290, 317, 220, 37);

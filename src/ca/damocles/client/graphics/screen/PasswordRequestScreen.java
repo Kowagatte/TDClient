@@ -8,7 +8,7 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class PasswordRequestScreen extends JLayeredPane{
+public class PasswordRequestScreen extends JLayeredPane implements Screen{
 	public PasswordRequestScreen() {
 		
 		JLabel lblBg = new JLabel("bg");

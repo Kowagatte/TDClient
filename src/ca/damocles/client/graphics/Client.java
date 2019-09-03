@@ -9,10 +9,9 @@ import javax.swing.JLayeredPane;
 
 import ca.damocles.Packet;
 import ca.damocles.Packet.PacketEnum;
-import ca.damocles.client.ClientState;
 import ca.damocles.client.InputHandler;
-import ca.damocles.client.graphics.screen.CreateAccountScreen;
 import ca.damocles.client.graphics.screen.LoginScreen;
+import ca.damocles.client.graphics.screen.Screen;
 import ca.damocles.ServerConnection;
 import ca.damocles.SplashText;
 import ca.damocles.utils.ResourceUtil;
@@ -35,10 +34,7 @@ public class Client extends JFrame implements Runnable{
 	public boolean connected = false;
 	public Thread thread;
 	
-	public ClientState state;
-	
-	private LoginScreen loginScreen;
-	private CreateAccountScreen accountScreen;
+	public Screen currentScreen;
 	
 	public Client(String toolBarMessage) {
 		super(toolBarMessage);
@@ -57,9 +53,8 @@ public class Client extends JFrame implements Runnable{
 		inputHandler = new InputHandler();
 		//addKeyListener(inputHandler);
 		//addFocusListener(inputHandler);
-		initializeScreens();
 		connectToServer();
-		changeState(ClientState.LOGIN_SCREEN);
+		changeScreen(new LoginScreen());
 	}
 	
 	public void connectToServer() {
@@ -70,11 +65,6 @@ public class Client extends JFrame implements Runnable{
 				start();
 			}
 		}catch (IOException e) { System.exit(0); }
-	}
-	
-	public void initializeScreens() {
-		this.loginScreen = new LoginScreen();
-		this.accountScreen = new CreateAccountScreen();
 	}
 	
 	public synchronized void start() {
@@ -95,67 +85,22 @@ public class Client extends JFrame implements Runnable{
 		 System.exit(0);
 	}
 	
-	public void changeState(ClientState newState) {
-		state = newState;
+	public void changeScreen(Screen newScreen) {
+		currentScreen = newScreen;
 		getContentPane().removeAll();
-		setScreen();
+		getContentPane().add(newScreen.getPane(), BorderLayout.CENTER);
 		validate();
 	}
 	
-	public JLayeredPane getActivePane() {
-		switch(state) {
-		case CLIENT:
-			break;
-		case CREATE_ACCOUNT:
-			break;
-		case IN_GAME:
-			break;
-		case LOGIN_SCREEN:
-			return loginScreen;
-		case PASSWORD_CHANGE:
-			break;
-		case PASSWORD_MENU:
-			break;
-		case PASSWORD_REQUEST:
-			break;
-		default:
-			break;
-		}
-		return null;
-	}
-	
 	public void changeText(String text) {
-		if(getActivePane() != null) {
-			for(Component comp : getActivePane().getComponents()) {
-				if(comp.getName() != null) {
-					if(comp.getName().equalsIgnoreCase("field")) {
-						((JLabel)comp).setForeground(Color.RED);
-						((JLabel) comp).setText(text);
-						comp.repaint();
-					}
+		for(Component comp : ((JLayeredPane)getContentPane().getComponents()[0]).getComponents()) {
+			if(comp.getName() != null) {
+				if(comp.getName().equalsIgnoreCase("field")) {
+					((JLabel)comp).setForeground(Color.RED);
+					((JLabel) comp).setText(text);
+					comp.repaint();
 				}
 			}
-		}
-	}
-	
-	public void setScreen() {
-		switch(state) {
-			case CLIENT:
-				break;
-			case CREATE_ACCOUNT:
-				getContentPane().add(accountScreen, BorderLayout.CENTER);
-			case IN_GAME:
-				break;
-			case LOGIN_SCREEN:
-				getContentPane().add(loginScreen, BorderLayout.CENTER);
-			case PASSWORD_CHANGE:
-				break;
-			case PASSWORD_MENU:
-				break;
-			case PASSWORD_REQUEST:
-				break;
-			default:
-				break;
 		}
 	}
 

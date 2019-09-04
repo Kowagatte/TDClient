@@ -9,6 +9,7 @@ import javax.net.ssl.SSLSocket;
 
 import ca.damocles.Packet.PacketEnum;
 import ca.damocles.client.graphics.Client;
+import ca.damocles.client.graphics.screen.PasswordChangeScreen;
 import ca.damocles.utils.AccountLoginStatus;
 
 public class ServerConnection extends Thread{
@@ -60,6 +61,9 @@ public class ServerConnection extends Thread{
         		
         		if(packet.getEnum() == PacketEnum.INFO) {
         			Client.getInstance().changeText(packet.getArgs()[0]);
+        			if(packet.getArgs()[0].equalsIgnoreCase("status OK")) {
+        				Client.getInstance().changeScreen(new PasswordChangeScreen());
+        			}
         		}
         		
         		if(packet.getEnum() == PacketEnum.LOGIN_STATUS) {

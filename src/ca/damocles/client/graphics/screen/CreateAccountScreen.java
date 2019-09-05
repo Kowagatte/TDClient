@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.JTextField;
 
+import ca.damocles.client.graphics.Client;
+
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
@@ -71,6 +73,8 @@ public class CreateAccountScreen extends JLayeredPane implements Screen{
 		add(verifyField);
 		
 		JButton btnCreateAccount = new JButton("Create Account");
+		btnCreateAccount.setFocusable(false);
+		btnCreateAccount.setFocusPainted(false);
 		btnCreateAccount.setRequestFocusEnabled(false);
 		btnCreateAccount.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnCreateAccount.addActionListener(new ActionListener() {
@@ -79,25 +83,27 @@ public class CreateAccountScreen extends JLayeredPane implements Screen{
 			}
 		});
 		setLayer(btnCreateAccount, 1);
-		btnCreateAccount.setBounds(290, 450, 142, 33);
+		btnCreateAccount.setBounds(290, 500, 142, 33);
 		add(btnCreateAccount);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.setFocusable(false);
+		btnBack.setFocusPainted(false);
 		btnBack.setRequestFocusEnabled(false);
 		btnBack.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Client.getInstance().changeState(ClientState.LOGIN_SCREEN);
+				Client.getInstance().changeScreen(new LoginScreen());
 			}
 		});
 		setLayer(btnBack, 1);
-		btnBack.setBounds(437, 450, 73, 33);
+		btnBack.setBounds(437, 500, 73, 33);
 		add(btnBack);
 		
 		JLabel lblTextBox = new JLabel("New label");
 		setLayer(lblTextBox, 1);
 		lblTextBox.setIcon(new ImageIcon(CreateAccountScreen.class.getResource("/sprites/AccountTextField.png")));
-		lblTextBox.setBounds(247, 181, 306, 325);
+		lblTextBox.setBounds(247, 181, 306, 375);
 		add(lblTextBox);
 	}
 

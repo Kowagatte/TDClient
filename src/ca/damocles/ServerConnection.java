@@ -61,7 +61,7 @@ public class ServerConnection extends Thread{
         		
         		if(packet.getEnum() == PacketEnum.INFO) {
         			Client.getInstance().changeText(packet.getArgs()[0]);
-        			if(packet.getArgs()[0].equalsIgnoreCase("status OK")) {
+        			if(packet.getArgs()[0].equalsIgnoreCase("screen CODE")) {
         				Client.getInstance().changeScreen(new PasswordChangeScreen());
         			}
         		}

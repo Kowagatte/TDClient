@@ -76,23 +76,27 @@ public class PasswordChangeScreen extends JLayeredPane implements Screen{
 		add(confirmPasswordField);
 		
 		JButton btnChangePass = new JButton("Change Password");
+		btnChangePass.setFocusPainted(false);
+		btnChangePass.setFocusable(false);
 		setLayer(btnChangePass, 1);
 		btnChangePass.setRequestFocusEnabled(false);
 		btnChangePass.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-		btnChangePass.setBounds(290, 450, 142, 33);
+		btnChangePass.setBounds(290, 500, 142, 33);
 		add(btnChangePass);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.setFocusable(false);
+		btnBack.setFocusPainted(false);
 		setLayer(btnBack, 1);
 		btnBack.setRequestFocusEnabled(false);
 		btnBack.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-		btnBack.setBounds(437, 450, 73, 33);
+		btnBack.setBounds(437, 500, 73, 33);
 		add(btnBack);
 		
 		JLabel lblTextbox = new JLabel("TextBox");
 		setLayer(lblTextbox, 1);
 		lblTextbox.setIcon(new ImageIcon(PasswordChangeScreen.class.getResource("/sprites/AccountTextField.png")));
-		lblTextbox.setBounds(247, 181, 306, 325);
+		lblTextbox.setBounds(247, 181, 306, 375);
 		add(lblTextbox);
 	}
 

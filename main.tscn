@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/Test.gdns" type="Script" id=1]
+[ext_resource path="res://fonts/Roboto/RobotoRegular.tres" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="Panel" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.507
+anchor_right = 0.507
+margin_left = -318.41
+margin_top = 114.3
+margin_right = 318.59
+margin_bottom = 259.3
+custom_fonts/font = SubResource( 1 )
+text = "Attempting to Connect to Server..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

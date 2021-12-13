@@ -1,61 +1,51 @@
-#Nim imports
-import strutils
-import std/strformat
+import std/net
+import packets_pb
 
-#Godot imports
+const SERVER_IP = "127.0.0.1"
+const PORT = Port(8888)
+
+let serverSocket = newSocket()
+
+proc isConnected(): bool =
+  serverSocket.trySend("")
+
+proc connectServer(): bool =
+  try:
+    serverSocket.connect(SERVER_IP, PORT)
+    true
+  except:
+    false
+
+proc sendMsg(msg: string) =
+  serverSocket.send(msg)
+
+proc sendLogin(email: string, password: string) =
+  var loginPacket = newClientPacket_DummyPacket()
+  loginPacket.email = email
+  loginPacket.password = password
+  serverSocket.send(serialize(loginPacket))
+
+proc receiveData() =
+  discard #TODO
+
 import godot
-import godotapi / [engine, input, global_constants]
+import godotapi/[input, global_constants, engine, node, scene_tree, tree]
 
 gdobj Client of Node:
 
-  var client: StreamPeerTCP
-  var clientStream: PacketPeerStream
-  var isConnected = false
-  var shouldConnect = false
-
-  const SERVER_IP: string = "127.0.0.1"
-  const PORT: int = 8888
+  var currentScene: Node
 
   method ready*() =
-    client = StreamPeerTCP.new()
-    client.set_no_delay(true)
-    connect(10)
+    var root = self.getTree().root
+    self.currentScene = root.getChild(root.getChildCount() - 1)
 
   method process*(delta: float64) =
-    if shouldConnect and not isConnected:
-      discard #pass
-    if isConnected and not client.is_connected_to_host():
-      connected = false
-    if client.is_connected_to_host():
-      poll()
+    if not isConnected():
+      print("Connection failed, trying again.")
+      discard connectServer()
 
   method input*(event: InputEvent) =
     if isKeyPressed(KEY_T):
-      print("something")
-
-  proc connect(timeout: int): void =
-    set_process(true)
-    shouldConnect = true
-    print(fmt"Connecting to {SERVER_IP}:{PORT}")
-    var connected = client.connect_to_host(SERVER_IP, PORT)
-    if connected == OK:
-      if client.is_connected_to_host():
-        isConnected = true
-        print("Connected to server")
-        clientStream = PacketPeerStream.new()
-        clientStream.set_stream_peer(client)
-    else:
-      print("Attempt to connect failed.")
-
-  proc disconnect(): void =
-    client.disconnect_from_host()
-
-  proc poll(): void =
-    discard #pass
-
-
-  # method process*(delta: float64) =
-  #   let fps = getFramesPerSecond()
-  #   if int(fps * 10) != int(self.lastFPS * 10):
-  #     self.lastFPS = fps
-  #     self.text = "FPS: " & formatFloat(fps, ffDecimal, 1)
+      if isConnected():
+        sendLogin("nnryanp@gmail.com", "12345qwesd")
+        #sendMsg("something")

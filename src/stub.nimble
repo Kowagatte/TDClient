@@ -4,3 +4,4 @@ description   = "Godot-Nim Project Stub"
 license       = "MIT"
 
 requires "godot >= 0.7.21 & < 0.8.0"
+requires "nimpb >= 0.2.0"

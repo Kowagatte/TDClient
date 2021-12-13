@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+message ServerPacket{
+
+  message ResponsePacket{
+    int32 code = 1;
+    string message = 2;
+  }
+
+  message PingPacket{}
+
+}
+
+message ClientPacket{
+
+  message LoginPacket{
+    string email = 1;
+    string password = 2;
+  }
+
+  message DummyPacket{
+    string email = 1;
+    string password = 2;
+  }
+
+  message CreateAccountPacket{
+    string email = 1;
+    string username = 2;
+    string password = 3;
+  }
+
+  message ClosePacket{}
+
+  message PongPacket{}
+
+}

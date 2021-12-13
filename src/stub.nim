@@ -9,3 +9,4 @@ when not defined(release):
 import fpscounter
 import mainpanel
 import test
+import client

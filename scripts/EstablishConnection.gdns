@@ -3,6 +3,6 @@
 [ext_resource path="res://nimlib.gdnlib" type="GDNativeLibrary" id=1]
 
 [resource]
-resource_name = "Client"
-class_name = "Client"
+resource_name = "EstablishConnection"
+class_name = "EstablishConnection"
 library = ExtResource( 1 )

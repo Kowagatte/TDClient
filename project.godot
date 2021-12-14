@@ -8,16 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "",
-"class": "Test",
-"language": "NativeScript",
-"path": "res://scripts/Test.gdns"
-} ]
-_global_script_class_icons={
-"Test": ""
-}
-
 [application]
 
 config/name="TDClient"
@@ -26,7 +16,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Client="*res://scripts/Client.gdns"
+EstablishConnection="*res://scripts/EstablishConnection.gdns"
 
 [gdnative]
 

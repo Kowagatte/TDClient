@@ -42,7 +42,7 @@ task "build", "Builds the client for the current platform":
     else: nil
   createDir("_dlls")
   withDir "src":
-    direShell(["nimble", "c", ".."/"src"/"stub.nim", "-o:.."/"_dlls"/libFile, "--cc:gcc"])
+    direShell(["nimble", "c", ".."/"src"/"stub.nim", "-o:.."/"_dlls"/libFile, "--cc:gcc", "--threads:on", "--tlsEmulation:off"])
 
 task "clean", "Remove files produced by build":
   removeDir(".nimcache")

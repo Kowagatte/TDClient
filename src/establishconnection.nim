@@ -22,3 +22,5 @@ gdobj EstablishConnection of Node:
     while status in {Started..Timeout}:
       status = connectServer()
       self.outLog.text = $status
+    assert status == Success
+    discard self.getTree().changeSceneImpl("res://scenes/LoginScreen.tscn")

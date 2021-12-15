@@ -17,7 +17,7 @@ gdobj Login of Node:
     self.loginButton = self.getNode(newNodePath("LoginButton")) as Button
     discard self.loginButton.connect("pressed", self, "_send_credentials")
 
-  proc sendCredentials() =
+  method sendCredentials() =
     var loginPacket: ClientPacket_LoginPacket = newClientPacket_LoginPacket()
     loginPacket.email = self.emailEnter.text
     loginPacket.password = self.passwordEnter.text

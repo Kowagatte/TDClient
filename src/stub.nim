@@ -9,3 +9,4 @@ when not defined(release):
 import utils/fpscounter
 import establishconnection
 import loginScreen/login
+import createAccountScreen/createAccount

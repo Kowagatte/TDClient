@@ -1,16 +1,14 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://fonts/Roboto/RobotoRegular.tres" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/BitPotion/BitPotion.tres" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/EstablishConnection.gdns" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=1]
-size = 39
-use_filter = true
+size = 64
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 24
-use_filter = true
+size = 36
 font_data = ExtResource( 1 )
 
 [node name="Node2D" type="Node2D"]
@@ -24,13 +22,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="Label" parent="Panel"]
-anchor_left = 0.491
-anchor_right = 0.491
-margin_left = -258.999
-margin_top = 54.3092
-margin_right = 263.001
-margin_bottom = 181.31
+[node name="Title" type="Label" parent="Panel"]
+anchor_left = 0.488
+anchor_top = 0.213
+anchor_right = 0.488
+anchor_bottom = 0.213
+margin_left = -254.766
+margin_top = -62.3403
+margin_right = 267.234
+margin_bottom = 64.6605
 custom_fonts/font = SubResource( 1 )
 text = "TopDownShooter"
 align = 1
@@ -42,11 +42,12 @@ __meta__ = {
 [node name="Label" type="Label" parent="Panel"]
 anchor_left = 0.497
 anchor_right = 0.497
-margin_left = -148.28
-margin_top = 184.0
-margin_right = 139.72
-margin_bottom = 489.0
+margin_left = -149.469
+margin_top = 180.432
+margin_right = 138.531
+margin_bottom = 485.432
 custom_fonts/font = SubResource( 2 )
+text = "Test this is a test"
 align = 1
 valign = 1
 autowrap = true

@@ -4,6 +4,6 @@
 
 [resource]
 
-resource_name = "MainPanel"
+resource_name = "Login"
 library = ExtResource( 1 )
-class_name = "MainPanel"
+class_name = "Login"

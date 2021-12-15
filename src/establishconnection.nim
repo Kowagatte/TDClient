@@ -1,27 +1,24 @@
 import connection
 import godot
-import godotapi/[input, global_constants, engine, node, scene_tree, tree]
+import godotapi/[engine, node, scene_tree, tree, thread, label]
 
+#[
+Connects the Client to the server, does this in a seperate thread
+so the rendering is not blocked.
+]#
 gdobj EstablishConnection of Node:
 
-  var currentScene: Node
+  var outLog: Label
+  var connectingThread: Thread
 
   method ready*() =
-    var root = self.getTree().root
-    self.currentScene = root.getChild(root.getChildCount() - 1)
+    self.outLog = self.getChild(1) as Label
+    self.connectingThread = gdnew[Thread]()
+    discard self.connectingThread.start(self, "_thread_function")
 
-  var time: float64 = 0
-  method process*(delta: float64) =
-    self.time += delta
-    if not isConnected():
-      print(self.time)
-      if self.time > 1:
-        self.time = 0
-      print("Connection failed, trying again.")
-      connectServer()
-
-  method input*(event: InputEvent) =
-    if isKeyPressed(KEY_T):
-      if isConnected():
-        print("works")
-        #sendLogin("nnryanp@gmail.com", "12345qwesd")
+  method threadFunction*(_: Node) =
+    var status: ConnectionStatus
+    self.outLog.text = $status
+    while status in {Started..Timeout}:
+      status = connectServer()
+      self.outLog.text = $status

@@ -1,0 +1,198 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://fonts/BitPotion/ttf/BitPotionExt.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/fonts/BitPotionExt.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scripts/Login.gdns" type="Script" id=3]
+[ext_resource path="res://fonts/BitPotion/BitPotion.tres" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 26
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 32
+font_data = ExtResource( 2 )
+
+[node name="LoginScreen" type="Control"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Panel"]
+anchor_left = 0.503
+anchor_top = 0.183
+anchor_right = 0.503
+anchor_bottom = 0.183
+margin_left = -195.399
+margin_top = -69.8
+margin_right = 194.601
+margin_bottom = 70.2
+custom_fonts/font = SubResource( 1 )
+text = "TopDownShooter"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Email" type="Label" parent="Panel"]
+anchor_left = 0.343
+anchor_top = 0.429
+anchor_right = 0.343
+anchor_bottom = 0.429
+margin_left = -35.587
+margin_top = -20.746
+margin_right = 36.413
+margin_bottom = 21.254
+custom_fonts/font = SubResource( 2 )
+text = "Email:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmailEnter" type="LineEdit" parent="Panel/Email"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 70.5227
+margin_top = -17.0
+margin_right = 401.523
+margin_bottom = 18.0
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Password" type="Label" parent="Panel"]
+anchor_left = 0.364
+anchor_top = 0.551
+anchor_right = 0.364
+anchor_bottom = 0.551
+margin_left = -63.736
+margin_top = -21.6
+margin_right = 65.264
+margin_bottom = 20.4
+custom_fonts/font = SubResource( 6 )
+text = "Password:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PasswordEnter" type="LineEdit" parent="Panel/Password"]
+anchor_left = 0.138
+anchor_top = 0.524
+anchor_right = 0.138
+anchor_bottom = 0.524
+margin_left = 103.198
+margin_top = -17.008
+margin_right = 392.198
+margin_bottom = 16.992
+custom_styles/focus = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
+max_length = 24
+secret = true
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreateAccount" type="Label" parent="Panel"]
+margin_left = 316.0
+margin_top = 517.0
+margin_right = 694.0
+margin_bottom = 540.0
+custom_fonts/font = SubResource( 10 )
+text = "Don't have an account? Create one!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreateAccountButton" type="LinkButton" parent="Panel/CreateAccount"]
+anchor_left = 0.737
+anchor_top = 0.552
+anchor_right = 0.737
+anchor_bottom = 0.552
+margin_left = -49.6662
+margin_top = -11.5068
+margin_right = 49.3338
+margin_bottom = 11.4932
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoginButton" type="Button" parent="Panel"]
+anchor_left = 0.486
+anchor_top = 0.756
+anchor_right = 0.486
+anchor_bottom = 0.756
+margin_left = -101.019
+margin_top = -18.946
+margin_right = 101.981
+margin_bottom = 19.054
+custom_fonts/font = SubResource( 11 )
+text = "Login"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ErrorMessage" type="RichTextLabel" parent="Panel"]
+margin_left = 375.709
+margin_top = 162.019
+margin_right = 662.709
+margin_bottom = 210.019
+custom_fonts/normal_font = SubResource( 12 )
+custom_colors/default_color = Color( 0.666667, 0.188235, 0.188235, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

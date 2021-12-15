@@ -11,12 +11,8 @@ config_version=4
 [application]
 
 config/name="TDClient"
-run/main_scene="res://main.tscn"
+run/main_scene="res://scenes/Connect.tscn"
 config/icon="res://icon.png"
-
-[autoload]
-
-EstablishConnection="*res://scripts/EstablishConnection.gdns"
 
 [gdnative]
 

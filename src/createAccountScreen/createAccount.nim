@@ -1,8 +1,8 @@
 import ../connection
-import ../packets_pb
 import godot
 import godotinternal
 import godotapi/[engine, node, line_edit, button, label, scene_tree, link_button]
+import ../utils/packets
 
 gdobj CreateAccount of Node:
 
@@ -35,7 +35,9 @@ gdobj CreateAccount of Node:
       createAccountPacket.email = self.emailEnter.text
       createAccountPacket.username = self.usernameEnter.text
       createAccountPacket.password = self.passwordEnter.text
-      sendData(serialize(createAccountPacket))
+      #print(serialize(pack(createAccountPacket)))
+      #print(serialize(createAccountPacket))
+      sendData(construct(createAccountPacket))
 
   method changeToLoginScreen() =
     discard self.getTree().changeSceneImpl("res://scenes/LoginScreen.tscn")

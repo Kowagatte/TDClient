@@ -1,8 +1,8 @@
 import ../connection
-import ../packets_pb
 import godot
 import godotinternal
-import godotapi/[engine, node, line_edit, button]
+import godotapi/[engine, node, line_edit, button, input, global_constants]
+import ../utils/packets
 
 gdobj Login of Node:
 
@@ -21,7 +21,17 @@ gdobj Login of Node:
     var loginPacket: ClientPacket_LoginPacket = newClientPacket_LoginPacket()
     loginPacket.email = self.emailEnter.text
     loginPacket.password = self.passwordEnter.text
-    sendData(serialize(loginPacket))
+    sendData(construct(loginPacket))
+
+  method input*(event: InputEvent) =
+    if isKeyPressed(KEY_T):
+      let pack = receiveMessage()
+      if pack of ServerPacket_ResponsePacket:
+        let resp = ServerPacket_ResponsePacket pack
+        echo resp.code
+        echo resp.message
+      #echo serialize(receiveMessage())
+      #print(serialize(receiveMessage()))
 
   method debugLoginCredentials*() =
     print("Email:", self.emailEnter.text)

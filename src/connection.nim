@@ -1,12 +1,14 @@
 import std/net
 import std/locks
 import std/json
+import utils/packets
+import godot
 
 const connectionSettings = staticread("./connection_info.json")
-let settingsAsJson = parseJson(connectionSettings)
-
-let SERVER_IP = settingsAsJson["ip"].getStr
-let PORT = Port(settingsAsJson["port"].getInt)
+let
+  settingsAsJson = parseJson(connectionSettings)
+  SERVER_IP = settingsAsJson["ip"].getStr
+  PORT = Port(settingsAsJson["port"].getInt)
 
 var
   serverSocket: Socket = newSocket()
@@ -41,5 +43,24 @@ proc sendData*(msg: string) =
   withLock(socketLock):
     serverSocket.send(msg)
 
-proc receiveData() =
-  discard #TODO
+proc receiveMessage*(): Message =
+  if tryAcquire(socketLock):
+    var raw: string
+    try:
+      #TODO Use SocketStream to get all available bytes instead of a fixed number.
+      print(serverSocket.recv(raw, 74, 1000))
+    except:
+      discard
+    raw.setlen(74)
+    unpack(destruct(raw))
+  else:
+    nil
+
+proc receiveData*(): string =
+  if tryAcquire(socketLock):
+    try:
+      discard serverSocket.recv(result, 1024, 200)
+    except:
+      discard
+  else:
+    result = ""

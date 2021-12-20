@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+message Error{}
+
 message ServerPacket{
 
   message ResponsePacket{

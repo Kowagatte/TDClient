@@ -1,6 +1,7 @@
 import std/net
 import std/locks
 import std/json
+import std/strutils
 import utils/packets
 import godot
 
@@ -15,7 +16,7 @@ var
   socketLock: Lock
 
 type ConnectionStatus* = enum
-  STARTED = "Attempting to connect to the server."
+  STARTED = "Attempting to connect to the server.",
   TIMEOUT = "Timed out, attempting to reconnect.",
   FAILED = "Failed to connect to server.",
   SUCCESS = "Success, joining game."
@@ -41,17 +42,19 @@ proc connectServer*(): ConnectionStatus =
 
 proc sendData*(msg: string) =
   withLock(socketLock):
+    var conv = msg.len().int32
+    discard serverSocket.send(conv.addr, sizeof(int32))
     serverSocket.send(msg)
 
 proc receiveMessage*(): Message =
   if tryAcquire(socketLock):
+    var length: int32
+    discard serverSocket.recv(length.addr, 4, 1000)
     var raw: string
     try:
-      #TODO Use SocketStream to get all available bytes instead of a fixed number.
-      print(serverSocket.recv(raw, 74, 1000))
+      discard serverSocket.recv(raw, length.int, 10000)
     except:
       discard
-    raw.setlen(74)
     unpack(destruct(raw))
   else:
     nil

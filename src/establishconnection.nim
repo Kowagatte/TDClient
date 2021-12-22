@@ -1,4 +1,5 @@
 import connection
+import packetHandler
 import godot
 import godotapi/[engine, node, scene_tree, tree, thread, label]
 
@@ -23,4 +24,6 @@ gdobj EstablishConnection of Node:
       status = connectServer()
       self.outLog.text = $status
     assert status == Success
+    #Start the threads that collect packets
+    startThreads(self)
     discard self.getTree().changeSceneImpl("res://scenes/LoginScreen.tscn")

@@ -5,31 +5,36 @@ import godotapi/[engine, node, thread]
 import utils/packets
 import std/locks
 
-#TODO REMOVE GODOT STUFF AND START THREADS IN establishconnection.nim
+var
+  packetQueue: seq[Message]
+  queueLock: Lock
+  acceptingThread: Thread
+  dispatchingThread: Thread
 
-gdobj PacketHandler of Node:
+initLock(queueLock)
 
-  var
-    packetQueue: seq[Message]
-    queueLock: Lock
-    acceptingThread: Thread
-    dispatchingThread: Thread
+#TODO
 
-  method ready*() =
-    initLock(self.queueLock)
-    self.acceptingThread = gdnew[Thread]()
-    self.dispatchingThread = gdnew[Thread]()
-    discard self.acceptingThread.start(self, "_accept_thread")
-    discard self.dispatchingThread.start(self, "_dispatch_thread")
+proc testMethod*() =
+  #Client runs this?
+  print("This is running")
 
-  method acceptThread*(_: Node) =
-    while wasConnected && isConnected():
-      withLock(self.queueLock):
-        self.packetQueue.add(receiveMessage())
+proc startThreads*(self: Node) =
+  #Client crashes here?? Nvm it stopped?
+  acceptingThread = gdnew[Thread]()
+  dispatchingThread = gdnew[Thread]()
+  discard acceptingThread.start(self, "_accept_thread")
+  discard dispatchingThread.start(self, "_dispatch_thread")
 
-  method dispatchThread*(_: Node) =
-    withLock(self.queueLock):
-      if len(self.packetQueue) > 0:
-        #TODO dispatch
-      else:
-        discard #
+proc acceptThread*(_: Node) =
+  while isConnected():
+    withLock(queueLock):
+      packetQueue.add(receiveMessage())
+
+proc dispatchThread*(_: Node) =
+  withLock(queueLock):
+    if len(packetQueue) > 0:
+      #TODO dispatch
+      discard #
+    else:
+      discard #

@@ -11,12 +11,16 @@ config_version=4
 [application]
 
 config/name="Gdnim"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/ConnectScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Watcher="*res://_tscn/watcher.tscn"
+Connection="*res://_gdns/connection.gdns"
+
+[global]
+
+scene=false
 
 [rendering]
 

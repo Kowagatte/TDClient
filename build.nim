@@ -43,7 +43,7 @@ let allCompilerFlagsTable = {
                                                          # compiles fastest, clean compile output, does not work with threads:on
   "tcc": "--cc:tcc",
   # clean compile output, needs gcc dlls, produces large dlls by default, use strip
-  "gcc": "--cc:gcc --threads:on --tlsEmulation:off",
+  "gcc": "--cc:gcc --threads:on --tlsEmulation:off --hint[XDeclaredButNotUsed]:off --warning[UnusedImport]:off",
   "gcc_strip": "--d:strip",                              # same as "--passL:\"-s\"", # removes debug symbols
   "gcc_flto": "--passC:-flto",                           # https://gcc.gnu.org/wiki/LinkTimeOptimization
   "mingw": "-d:mingw",

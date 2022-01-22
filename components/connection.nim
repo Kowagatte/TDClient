@@ -2,16 +2,27 @@ import std / [net, locks, json, strutils]
 import ../non_components/packets
 import gdnim, godotapi / [node]
 
+#[
+  Server details
+]#
 let
   SERVER_IP = "127.0.0.1"
   PORT = Port(8888)
 
+#[
+  Possible States the client can be in attempting a connection to the server TCP Socket.
+]#
 type ConnectionStatus* = enum
   STARTED = "Attempting to connect to the server.",
   TIMEOUT = "Timed out, attempting to reconnect.",
   FAILED = "Failed to connect to server.",
   SUCCESS = "Success, joining game."
 
+#[
+  Godot object representing a connection to the server.
+  This object stores the socket connected to the main server.
+  And methods to interact with the Server.
+]#
 gdnim Connection of Node:
 
   var
@@ -68,6 +79,7 @@ gdnim Connection of Node:
 
       echo raw
       unpack(destruct(raw))
+
 
   proc receiveData*(): string =
     {.cast(gcsafe).}:

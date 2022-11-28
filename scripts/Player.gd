@@ -14,7 +14,7 @@ func _ready():
 	pass # Replace with function body.
 	
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var velocity = Vector2()
 	
 	if movement[0]:

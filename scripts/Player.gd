@@ -1,16 +1,14 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var move_speed = 200
 var movement = [false, false, false, false]
 var rotation_map = [-45, 135, 45, -135]
 
+var bullet: KinematicBody2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	bullet = get_node("../bullet")
 	pass # Replace with function body.
 	
 
@@ -58,10 +56,16 @@ func _physics_process(_delta):
 		rotation_degrees = rotation_map[1] + rotation_map[3] + 180
 	
 	
-	move_and_slide(velocity)
+	var _m = move_and_slide(velocity)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
+	
+	if Input.is_action_pressed("shoot"):
+		bullet.position = position
+		bullet.set_process(true)
+		bullet.visible = true
+	
 	movement[0] = Input.is_action_pressed("move_up")
 	movement[1] = Input.is_action_pressed("move_down")
 	movement[2] = Input.is_action_pressed("move_right")

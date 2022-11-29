@@ -4,7 +4,7 @@
 [ext_resource path="res://scripts/bullet.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3, 3 )
+extents = Vector2( 2.75, 3 )
 
 [node name="bullet" type="KinematicBody2D"]
 scale = Vector2( 2, 2 )
@@ -12,7 +12,7 @@ collision_mask = 6
 script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2( 2, 0 )
+position = Vector2( 1.75, 0 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

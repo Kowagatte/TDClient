@@ -1,21 +1,25 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 export var speed = 400
 export var accel = 5
+var direction = Vector2(0, 0)
 
+func hit():
+	visible = false
+	set_process(false)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func shoot(pos, dir):
+	position = pos
+	direction = dir
 
+	rotation = direction.angle()
+
+	#rotation_degrees = int(Math.atan2(dir.y, dir.x)*180/Math.PI)
+
+	set_process(true)
+	visible = true
 
 func _physics_process(delta):
-	move_and_collide( Vector2(1, 0).normalized() * speed * delta)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	var c = move_and_collide( direction.normalized() * speed * delta)
+	if c:
+		hit()

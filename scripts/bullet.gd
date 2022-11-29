@@ -4,10 +4,6 @@ export var speed = 400
 export var accel = 5
 var direction = Vector2(0, 0)
 
-func hit():
-	visible = false
-	set_process(false)
-
 func shoot(pos, dir):
 	position = pos
 	direction = dir
@@ -16,10 +12,13 @@ func shoot(pos, dir):
 
 	#rotation_degrees = int(Math.atan2(dir.y, dir.x)*180/Math.PI)
 
-	set_process(true)
+	set_physics_process(true)
 	visible = true
 
 func _physics_process(delta):
 	var c = move_and_collide( direction.normalized() * speed * delta)
 	if c:
-		hit()
+		#var _m = move_and_slide(c.remainder)
+		set_physics_process(false)
+		visible = false
+		#hit()

@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 var move_speed = 200
+var last_velocity = Vector2.ZERO
 var velocity = Vector2(0, 0)
 var rotation_map = [[270, 225, 180], [315, rotation_degrees, 135], [0, 45, 90]]
 
@@ -19,6 +20,7 @@ func _ready():
 
 func _physics_process(_delta):
 	if velocity != Vector2():
+		last_velocity = velocity
 		rotation_degrees = rotation_map[velocity.x+1][velocity.y+1]
 	var _m = move_and_slide(velocity.normalized() * move_speed)
 
@@ -28,7 +30,8 @@ func _physics_process(_delta):
 func _process(_delta):
 	
 	if Input.is_action_pressed("shoot"):
-		bullet.shoot(position, velocity)
+		if not bullet.is_physics_processing():
+			bullet.shoot(position, last_velocity)
 
 	if Input.is_action_pressed("move_up"):
 		velocity.y = -1

@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
-var move_speed = 200
+var move_speed = 192
 var last_velocity = Vector2.ZERO
 var velocity = Vector2(0, 0)
-var rotation_map = [[270, 225, 180], [315, rotation_degrees, 135], [0, 45, 90]]
+var rotation_map = [[270, 225, 180], [315, 0, 135], [0, 45, 90]]
 
 # [up, down, right, left]
 # [315, 135, 45, 225]
@@ -16,7 +16,8 @@ var bullet: KinematicBody2D
 func _ready():
 	bullet = get_node("../bullet")
 	pass # Replace with function body.
-	
+
+
 
 func _physics_process(_delta):
 	if velocity != Vector2():

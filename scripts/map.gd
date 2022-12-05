@@ -38,6 +38,7 @@ func create_wall(wall_type):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#var rng = RandomNumberGenerator.new()
 	var file = File.new()
 	if file.file_exists("res://resources/dust2.json"):
 		file.open("res://resources/dust2.json", File.READ)

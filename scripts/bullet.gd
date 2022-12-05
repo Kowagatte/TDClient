@@ -14,6 +14,11 @@ func shoot(pos, dir):
 
 	set_physics_process(true)
 	visible = true
+	
+
+func _ready():
+	visible = false
+	set_physics_process(false)
 
 func _physics_process(delta):
 	var c = move_and_collide( direction.normalized() * speed * delta)

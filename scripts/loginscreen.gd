@@ -12,9 +12,10 @@ func _ready():
 	var _c = createAccountButton.connect("pressed", self, "createAccount")
 
 func login():
-	if emailEnter != "":
-		if passwordEnter != "":
+	if emailEnter.text != "":
+		if passwordEnter.text != "":
 			pass
 
 func createAccount():
-	var _c = get_tree().change_scene("res://screens/CreateAccountScreen.tscn")
+	#var _c = get_tree().change_scene("res://screens/CreateAccountScreen.tscn")
+	get_parent().changeScene(self, "res://screens/CreateAccountScreen.tscn")

@@ -14,7 +14,7 @@ func _ready():
 func login():
 	if emailEnter.text != "":
 		if passwordEnter.text != "":
-			pass
+			get_tree().root.get_node("Server").login(emailEnter.text, passwordEnter.text)
 
 func createAccount():
 	#var _c = get_tree().change_scene("res://screens/CreateAccountScreen.tscn")

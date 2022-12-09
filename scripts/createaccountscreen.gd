@@ -13,6 +13,16 @@ onready var gotoLogin = get_node("Panel/Login/LoginButton") as LinkButton
 func _ready():
 	createButton.connect("pressed", self, "createAccount")
 	gotoLogin.connect("pressed", self, "login")
+	
+func changeErrorColor(color):
+	errorMessage.add_color_override("font_color", Color("#%s" % color))
+
+func message(rc, msg):
+	if rc == 200:
+		changeErrorColor("6ccd67")
+	else:
+		changeErrorColor("dc6666")
+	errorMessage.text = msg
 
 func login():
 	#var _c = get_tree().change_scene("res://screens/LoginScreen.tscn")
@@ -23,7 +33,7 @@ func createAccount():
 		if usernameEnter.text != "":
 			if passwordEnter.text != "":
 				if passwordEnter.text == confirmPasswordEnter.text:
-					pass
+					get_tree().root.get_node("Server").createAccount(emailEnter.text, usernameEnter.text, passwordEnter.text)
 	pass
 
 

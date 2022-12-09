@@ -63,9 +63,6 @@ custom_fonts/font = SubResource( 1 )
 text = "TopDownShooter"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Email" type="Label" parent="Panel"]
 anchor_left = 0.353
@@ -175,7 +172,6 @@ margin_right = 186.496
 margin_bottom = 32.2
 custom_colors/font_color = Color( 0.921569, 0.345098, 0.345098, 1 )
 custom_fonts/font = SubResource( 12 )
-text = "This is a test"
 align = 1
 valign = 1
 

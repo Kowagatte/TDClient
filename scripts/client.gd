@@ -21,9 +21,8 @@ func _ready():
 	_c = get_tree().connect("connection_failed", self, "failed")
 	
 	# Add initial Scene
-	var login_screen = load("res://screens/LoginScreen.tscn")
-	add_child(login_screen.instance())
-
+	var loading_screen = load("res://screens/ConnectingScreen.tscn")
+	add_child(loading_screen.instance())
 
 
 # Loads and Changes the current scene.
@@ -37,6 +36,9 @@ func changeScene(current, scenePath):
 func connected():
 	print("Connected to the Server!")
 
+func confirmed():
+	# Add initial Scene
+	changeScene(get_child(0), "res://screens/LoginScreen.tscn")
 
 # On Disconnect from Server
 func disconnected():

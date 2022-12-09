@@ -100,13 +100,10 @@ margin_left = -136.288
 margin_top = -23.981
 margin_right = 150.712
 margin_bottom = 24.019
-custom_colors/font_color = Color( 0.862745, 0.4, 0.4, 1 )
+custom_colors/font_color = Color( 0.423529, 0.803922, 0.403922, 1 )
 custom_fonts/font = SubResource( 2 )
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Email" type="Label" parent="Panel"]
 anchor_left = 0.341

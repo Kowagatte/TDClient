@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://resources/icons/map-location-solid.svg" type="Texture" id=1]
+[ext_resource path="res://scripts/friendlist.gd" type="Script" id=2]
+[ext_resource path="res://resources/icons/gears-solid.svg" type="Texture" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="Panel" parent="."]
+margin_right = 972.0
+margin_bottom = 712.0
+
+[node name="Button" type="Button" parent="Background"]
+anchor_left = 0.416
+anchor_top = 0.105
+anchor_right = 0.584
+anchor_bottom = 0.185
+margin_left = -0.35202
+margin_top = 0.239998
+margin_right = 0.351929
+margin_bottom = 0.279999
+text = "Queue"
+icon_align = 1
+
+[node name="Friends" type="Panel" parent="Background"]
+margin_left = 722.0
+margin_top = 312.0
+margin_right = 972.0
+margin_bottom = 712.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="FriendContainer" type="ScrollContainer" parent="Background/Friends"]
+margin_right = 250.0
+margin_bottom = 400.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Friends/FriendContainer"]
+margin_right = 250.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 250, 400 )
+script = ExtResource( 2 )
+
+[node name="Profile Badge" type="Panel" parent="Background"]
+margin_left = 79.0
+margin_top = 58.0
+margin_right = 325.0
+margin_bottom = 142.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Panel" type="HBoxContainer" parent="Background"]
+anchor_right = 1.0
+margin_left = 717.0
+margin_top = 67.0
+margin_right = -43.0
+margin_bottom = 118.0
+size_flags_horizontal = 5
+custom_constants/separation = 75
+
+[node name="TextureButton" type="TextureButton" parent="Background/Panel"]
+margin_right = 68.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+texture_normal = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="SettingsButton" type="TextureButton" parent="Background/Panel"]
+margin_left = 143.0
+margin_right = 212.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+texture_normal = ExtResource( 3 )
+expand = true
+stretch_mode = 5

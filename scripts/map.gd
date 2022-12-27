@@ -39,7 +39,7 @@ func create_wall(wall_type):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#var rng = RandomNumberGenerator.new()
-	var lab = get_parent().get_node("Scoreboard/score1")
+	var score1 = get_parent().get_node("Scoreboard/score1")
 	
 	var file = File.new()
 	if file.file_exists("res://resources/dust2.json"):
@@ -48,8 +48,10 @@ func _ready():
 		print(data["name"])
 		for wall in data["walls"]:
 			var w = create_wall(wall["wall"]).instance()
+			#if there is a coin in the maps array
 			if wall["wall"] == "coin":
-				lab.coins.append(w)
+				#add that coin to to the score1 coins array
+				score1.coins.append(w)
 			w.set_position(Vector2( (48*int(wall["x"]))+24 , (48*int(wall["y"]))+24 ))
 			w.rotation_degrees = int(wall["rotation"])
 			add_child(w)

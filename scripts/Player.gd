@@ -24,14 +24,12 @@ func _physics_process(_delta):
 		rotation_degrees = rotation_map[velocity.x+1][velocity.y+1]
 	var _m = move_and_slide(velocity.normalized() * move_speed)
 	
-	
-
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	
+	#added suicide key "L" for death testing, can be removed later
 	if Input.is_action_just_pressed("suicide"):
+		#when the player dies, emit a death signal and the name of who died.
 		emit_signal("died", name)
 		#emit_signal("died", get_tree().network_peer.get_unique_id())
 	if Input.is_action_pressed("shoot"):

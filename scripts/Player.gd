@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+signal died
 var move_speed = 192
 var last_velocity = Vector2.ZERO
 var velocity = Vector2(0, 0)
@@ -18,18 +18,22 @@ func _ready():
 	pass # Replace with function body.
 
 
-
 func _physics_process(_delta):
 	if velocity != Vector2():
 		last_velocity = velocity
 		rotation_degrees = rotation_map[velocity.x+1][velocity.y+1]
 	var _m = move_and_slide(velocity.normalized() * move_speed)
+	
+	
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	
+	if Input.is_action_just_pressed("suicide"):
+		emit_signal("died", name)
+		#emit_signal("died", get_tree().network_peer.get_unique_id())
 	if Input.is_action_pressed("shoot"):
 		if not bullet.is_physics_processing():
 			bullet.shoot(position, last_velocity)

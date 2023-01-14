@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var move_speed = 192
 var last_velocity = Vector2.ZERO
-var velocity = Vector2(0, 0)
+var velocity = Vector2(1, 1) #setting this to (1, 1) instead of (0, 0) fixed the bullet getting stuck at start glitch, but cuses the player to face to the bottem right
 var rotation_map = [[270, 225, 180], [315, 0, 135], [0, 45, 90]]
 
 # [up, down, right, left]

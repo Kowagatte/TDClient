@@ -18,6 +18,15 @@ position = Vector2( 0, 100 )
 scale = Vector2( 0.75, 0.75 )
 script = ExtResource( 3 )
 
+[node name="players" type="Node2D" parent="map"]
+position = Vector2( 0, -133.333 )
+scale = Vector2( 1.33333, 1.33333 )
+
+[node name="Player" parent="map/players" instance=ExtResource( 1 )]
+position = Vector2( 111, 193 )
+scale = Vector2( 0.75, 0.75 )
+script = ExtResource( 4 )
+
 [node name="Scoreboard" type="Control" parent="."]
 margin_right = 972.0
 margin_bottom = 100.0
@@ -39,10 +48,3 @@ custom_fonts/font = SubResource( 1 )
 text = "0"
 align = 1
 valign = 1
-
-[node name="players" type="Node2D" parent="."]
-
-[node name="Player" parent="players" instance=ExtResource( 1 )]
-position = Vector2( 111, 193 )
-scale = Vector2( 0.75, 0.75 )
-script = ExtResource( 4 )

@@ -4,7 +4,6 @@ var velocity = Vector2(0, 0)
 var offset_scale: float
 var offset: Vector2
 
-
 func _ready():
 	self.name = String(get_tree().get_network_unique_id())
 	var map = get_parent().get_parent()

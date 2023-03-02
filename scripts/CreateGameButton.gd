@@ -12,7 +12,7 @@ func _ready():
 
 
 func _button_pressed():
-	get_tree().root.get_node("Server").rpc_id(0, "startGame")
+	get_tree().root.get_node("Server/Games").rpc_id(0, "createGame")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

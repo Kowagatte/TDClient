@@ -34,5 +34,4 @@ func _process(_delta):
 	else:
 		velocity.x = 0
 		
-	
-	get_parent().get_parent().get_parent().rpc_unreliable_id(0, "control_player", velocity.x, velocity.y)
+	rpc_unreliable_id(0, "control_player", velocity.x, velocity.y)

@@ -8,7 +8,7 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.connect("pressed", self, "_button_pressed")
+	self.connect("pressed",Callable(self,"_button_pressed"))
 
 
 func _button_pressed():

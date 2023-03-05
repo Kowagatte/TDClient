@@ -1,7 +1,7 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-export var speed = 400
-export var accel = 5
+@export var speed = 400
+@export var accel = 5
 var direction = Vector2(0, 0)
 
 func shoot(pos, dir):
@@ -23,7 +23,9 @@ func _ready():
 func _physics_process(delta):
 	var c = move_and_collide( direction.normalized() * speed * delta)
 	if c:
-		#var _m = move_and_slide(c.remainder)
+		set_velocity(c.remainder)
+		move_and_slide()
+		#var _m = velocity
 		set_physics_process(false)
 		visible = false
 		#hit()

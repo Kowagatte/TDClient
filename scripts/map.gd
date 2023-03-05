@@ -38,14 +38,14 @@ func create_wall(wall_type):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#var rng = RandomNumberGenerator.new()
-	var file = File.new()
-	if file.file_exists("res://resources/dust2.json"):
-		file.open("res://resources/dust2.json", File.READ)
-		var data = parse_json(file.get_as_text())
+	var file = FileAccess.open("res://resources/dust2.json", FileAccess.READ)
+	if FileAccess.file_exists("res://resources/dust2.json"):
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(file.get_as_text())
+		var data = test_json_conv.get_data()
 		print(data["name"])
 		for wall in data["walls"]:
-			var w = create_wall(wall["wall"]).instance()
+			var w = create_wall(wall["wall"]).instantiate()
 			w.set_position(Vector2( (48*int(wall["x"]))+24 , (48*int(wall["y"]))+24 ))
 			w.rotation_degrees = int(wall["rotation"])
 			add_child(w)

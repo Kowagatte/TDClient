@@ -1,10 +1,10 @@
-extends Sprite
+extends Sprite2D
 
-onready var area = get_node("area")
+@onready var area = get_node("area")
 var player_owned: String
 
 func _ready():
-	var _c = area.connect("area_entered", self, "collided")
+	var _c = area.connect("area_entered",Callable(self,"collided"))
 	pass # Replace with function body.
 
 func collided(collider):

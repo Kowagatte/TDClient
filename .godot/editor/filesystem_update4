@@ -13,3 +13,5 @@ res://nodes/walls/half_corner.tscn
 res://nodes/walls/full_t.tscn
 res://nodes/walls/full_corner.tscn
 res://nodes/walls/cross.tscn
+res://screens/ConnectingScreen.tscn
+res://scripts/connectingscreen.gd

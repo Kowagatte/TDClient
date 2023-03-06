@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dod7trrg6dfhq"]
+[gd_scene load_steps=4 format=3 uid="uid://dod7trrg6dfhq"]
 
 [ext_resource type="Script" path="res://scripts/connectingscreen.gd" id="1_1dn60"]
+[ext_resource type="FontFile" uid="uid://dap64sbpa6nsy" path="res://resources/fonts/BitPotionExt.ttf" id="2_a3u2p"]
 [ext_resource type="Texture2D" uid="uid://fnyi8erxqtw6" path="res://resources/player.png" id="2_phoki"]
 
 [node name="ConnectingScreen" type="Control"]
@@ -10,24 +11,26 @@ script = ExtResource("1_1dn60")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 972.0
+offset_bottom = 712.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(569, 323)
-texture = ExtResource("2_phoki")
-
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 431.0
-offset_top = 250.0
-offset_right = 721.0
-offset_bottom = 276.0
+offset_left = -236.5
+offset_top = -56.0
+offset_right = 236.5
+offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_a3u2p")
+theme_override_font_sizes/font_size = 43
 text = "Attempting to connect to the server..."
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/Label"]
+position = Vector2(235.5, 77)
+texture = ExtResource("2_phoki")

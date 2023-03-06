@@ -14,8 +14,8 @@ script = ExtResource("1_8778w")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 972.0
+offset_bottom = 712.0
 
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 1

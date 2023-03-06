@@ -12,6 +12,7 @@ size = Vector2(16, 16)
 size = Vector2(16, 16)
 
 [node name="player" type="CharacterBody2D"]
+motion_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_5m6l2")

@@ -1,18 +1,13 @@
 extends CharacterBody2D
 
 var direction = Vector2(0, 0)
-var offset_scale: float
-var offset: Vector2
 
 func _ready():
 	self.name = String.num_int64(multiplayer.get_unique_id())
-	var map = get_parent().get_parent()
-	self.offset = map.position
-	self.offset_scale = map.scale.x
 
-@rpc("any_peer", "unreliable_ordered") func updatePos(x, y, rot):
-	self.position.x = (x*offset_scale) + offset.x
-	self.position.y = (y*offset_scale) + offset.y
+@rpc("any_peer", "unreliable") func updatePos(x, y, rot):
+	self.position.x = x
+	self.position.y = y
 	self.rotation_degrees = rot
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

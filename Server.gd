@@ -29,7 +29,6 @@ func ping():
 
 @rpc("any_peer")
 func response(response_code, message):
-	print(response_code, " ; ", message)
 	client.get_child(0).message(response_code, message)
 
 @rpc("any_peer")

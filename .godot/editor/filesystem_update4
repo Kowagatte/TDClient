@@ -1,1 +1,15 @@
+res://root.tscn
+res://nodes/game.tscn
+res://screens/CreateAccountScreen.tscn
+res://screens/LoginScreen.tscn
+res://screens/CreateGameScreen.tscn
 res://nodes/player.tscn
+res://scripts/player.gd
+res://Server.gd
+res://nodes/walls/outer_wall.tscn
+res://nodes/walls/middle_wall.tscn
+res://nodes/walls/half_t.tscn
+res://nodes/walls/half_corner.tscn
+res://nodes/walls/full_t.tscn
+res://nodes/walls/full_corner.tscn
+res://nodes/walls/cross.tscn

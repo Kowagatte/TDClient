@@ -2,6 +2,6 @@
 
 [ext_resource path="res://resources/spawn.png" type="Texture2D" id=1]
 
-[node name="Node2D" type="Sprite2D"]
+[node name="spawn" type="Sprite2D"]
 z_index = -1
 texture = ExtResource( 1 )

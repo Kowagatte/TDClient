@@ -25,7 +25,8 @@ func message(rc, msg):
 func login():
 	if emailEnter.text != "":
 		if passwordEnter.text != "":
-			get_tree().root.get_node("Server").login(emailEnter.text, passwordEnter.text)
+			get_parent().get_parent().get_node("Server").rpc_id(0, "login", emailEnter.text, passwordEnter.text)
+			#get_tree().root.get_node("Server").login(emailEnter.text, passwordEnter.text)
 
 func createAccount():
 	#var _c = get_tree().change_scene_to_file("res://screens/CreateAccountScreen.tscn")

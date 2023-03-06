@@ -33,8 +33,8 @@ func createAccount():
 		if usernameEnter.text != "":
 			if passwordEnter.text != "":
 				if passwordEnter.text == confirmPasswordEnter.text:
-					get_tree().root.get_node("Server").createAccount(emailEnter.text, usernameEnter.text, passwordEnter.text)
-	pass
+					get_parent().get_parent().get_node("Server").rpc_id(0, "createAccount", emailEnter.text, usernameEnter.text, passwordEnter.text)
+					#get_tree().root.get_node("Server").createAccount(emailEnter.text, usernameEnter.text, passwordEnter.text)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

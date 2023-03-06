@@ -11,8 +11,9 @@ var half_t = preload("res://nodes/walls/half_t.tscn")
 var middle_wall = preload("res://nodes/walls/middle_wall.tscn")
 var outer_wall = preload("res://nodes/walls/outer_wall.tscn")
 var spawn = preload("res://nodes/spawn.tscn")
-var coin = preload("res://nodes/Coin.tscn")
+var coin = preload("res://nodes/coin.tscn")
 
+# Returns the preloaded node corrosponding to the given long text name
 func create_wall(wall_type):
 	match wall_type:
 		"cross":
@@ -36,16 +37,26 @@ func create_wall(wall_type):
 		_:
 			pass
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	var file = FileAccess.open("res://resources/dust2.json", FileAccess.READ)
-	if FileAccess.file_exists("res://resources/dust2.json"):
+	loadMap("res://resources/dust2.json")
+
+# Loads the map from the given map file.
+func loadMap(map_path):
+	# Opens the map file
+	var file = FileAccess.open(map_path, FileAccess.READ)
+	if FileAccess.file_exists(map_path): # "res://resources/dust2.json"
+		# Formats the file as a JSON object
 		var test_json_conv = JSON.new()
 		test_json_conv.parse(file.get_as_text())
 		var data = test_json_conv.get_data()
-		print(data["name"])
+		
+		# Loops through each wall section in the JSON object
 		for wall in data["walls"]:
+			# Instantiates the wall from the given text
 			var w = create_wall(wall["wall"]).instantiate()
+			# Centers the wall object on the cordinates specified
 			w.set_position(Vector2( (48*int(wall["x"]))+24 , (48*int(wall["y"]))+24 ))
+			# Rotates the wall as specified
 			w.rotation_degrees = int(wall["rotation"])
+			# Adds the instantiated node to the tree
 			add_child(w)

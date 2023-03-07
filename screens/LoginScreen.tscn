@@ -1,188 +1,144 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://dfdn1skkwclx0"]
 
-[ext_resource path="res://resources/fonts/BitPotionExt.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://scripts/loginscreen.gd" type="Script" id=2]
-
-[sub_resource type="DynamicFont" id=1]
-size = 64
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 32
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 32
-font_data = ExtResource( 1 )
-
-[sub_resource type="StyleBoxEmpty" id=3]
-
-[sub_resource type="StyleBoxEmpty" id=4]
-
-[sub_resource type="DynamicFont" id=6]
-size = 32
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=9]
-size = 32
-font_data = ExtResource( 1 )
-
-[sub_resource type="StyleBoxEmpty" id=7]
-
-[sub_resource type="StyleBoxEmpty" id=8]
-
-[sub_resource type="DynamicFont" id=10]
-size = 32
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=12]
-size = 32
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=11]
-size = 32
-font_data = ExtResource( 1 )
+[ext_resource type="FontFile" uid="uid://dap64sbpa6nsy" path="res://resources/fonts/BitPotionExt.ttf" id="1"]
+[ext_resource type="Script" path="res://scripts/loginscreen.gd" id="2"]
 
 [node name="LoginScreen" type="Control"]
-script = ExtResource( 2 )
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2")
 
 [node name="Panel" type="Panel" parent="."]
-margin_right = 972.0
-margin_bottom = 712.0
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
 
 [node name="Title" type="Label" parent="Panel"]
-anchor_left = 0.503
-anchor_top = 0.183
-anchor_right = 0.51
-anchor_bottom = 0.183
-margin_left = -195.0
-margin_top = -70.0
-margin_right = 191.581
-margin_bottom = 80.2
-custom_fonts/font = SubResource( 1 )
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.193
+anchor_right = 0.5
+anchor_bottom = 0.193
+offset_left = -213.0
+offset_top = -75.064
+offset_right = 213.0
+offset_bottom = 75.136
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1")
+theme_override_font_sizes/font_size = 96
 text = "TopDownShooter"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Email" type="Label" parent="Panel"]
+layout_mode = 0
 anchor_left = 0.353
 anchor_top = 0.429
 anchor_right = 0.353
 anchor_bottom = 0.429
-margin_left = -36.472
-margin_top = -12.4
-margin_right = 11.528
-margin_bottom = 15.6
-custom_fonts/font = SubResource( 2 )
+offset_left = -36.472
+offset_top = -12.4
+offset_right = 11.528
+offset_bottom = 15.6
 text = "Email:"
-align = 1
-valign = 1
 
 [node name="EmailEnter" type="LineEdit" parent="Panel/Email"]
+layout_mode = 1
+anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 70.5227
-margin_top = -18.0595
-margin_right = 401.523
-margin_bottom = 16.9405
-custom_fonts/font = SubResource( 5 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
+offset_left = 60.0
+offset_top = -18.0
+offset_right = 402.0
+offset_bottom = 17.0
+grow_vertical = 2
 caret_blink = true
-caret_blink_speed = 0.5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+caret_blink_interval = 0.5
 
 [node name="Password" type="Label" parent="Panel"]
+layout_mode = 0
 anchor_left = 0.364
 anchor_top = 0.55
 anchor_right = 0.364
 anchor_bottom = 0.551
-margin_left = -47.736
-margin_top = -10.0
-margin_right = 38.264
-margin_bottom = 17.4
-custom_fonts/font = SubResource( 6 )
+offset_left = -47.736
+offset_top = -10.0
+offset_right = 38.264
+offset_bottom = 17.4
 text = "Password:"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PasswordEnter" type="LineEdit" parent="Panel/Password"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.138
 anchor_top = 0.524
 anchor_right = 0.138
 anchor_bottom = 0.524
-margin_left = 103.198
-margin_top = -17.008
-margin_right = 392.198
-margin_bottom = 16.992
-custom_fonts/font = SubResource( 9 )
-custom_styles/focus = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
+offset_left = 81.132
+offset_top = -16.6972
+offset_right = 392.132
+offset_bottom = 17.3028
 max_length = 24
 secret = true
 caret_blink = true
-caret_blink_speed = 0.5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+caret_blink_interval = 0.5
 
 [node name="CreateAccount" type="Label" parent="Panel"]
-anchor_left = 0.493
-anchor_top = 0.885
-anchor_right = 0.493
-anchor_bottom = 0.885
-margin_left = -188.832
-margin_top = -14.0
-margin_right = 189.168
-margin_bottom = 9.0
-custom_fonts/font = SubResource( 10 )
-text = "Don't have an account? Create one!"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -141.5
+offset_top = -98.0
+offset_right = 141.5
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Don't have an account?"
 
 [node name="CreateAccountButton" type="LinkButton" parent="Panel/CreateAccount"]
-anchor_left = 0.799
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.82
 anchor_top = 0.5
-anchor_right = 0.799
+anchor_right = 0.82
 anchor_bottom = 0.5
-margin_left = -56.022
-margin_top = -11.0
-margin_right = 55.978
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = -45.06
+offset_top = -13.0
+offset_right = 44.94
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0, 0.635294, 0.423529, 1)
+text = "Create one"
 
 [node name="ErrorMessage" type="Label" parent="Panel"]
+layout_mode = 0
 anchor_left = 0.521
 anchor_top = 0.323
 anchor_right = 0.521
 anchor_bottom = 0.323
-margin_left = -187.504
-margin_top = -31.8
-margin_right = 186.496
-margin_bottom = 32.2
-custom_colors/font_color = Color( 0.921569, 0.345098, 0.345098, 1 )
-custom_fonts/font = SubResource( 12 )
-align = 1
-valign = 1
+offset_left = -187.504
+offset_top = -31.8
+offset_right = 186.496
+offset_bottom = 32.2
+theme_override_fonts/font = ExtResource("1")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LoginButton" type="Button" parent="Panel"]
-anchor_left = 0.509
-anchor_top = 0.753
-anchor_right = 0.509
-anchor_bottom = 0.753
-margin_left = -101.216
-margin_top = -18.8
-margin_right = 101.784
-margin_bottom = 19.2
-custom_fonts/font = SubResource( 11 )
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.724
+anchor_right = 0.5
+anchor_bottom = 0.724
+offset_left = -101.5
+offset_top = -19.152
+offset_right = 101.5
+offset_bottom = 18.848
+grow_horizontal = 2
+grow_vertical = 0
 text = "Login"

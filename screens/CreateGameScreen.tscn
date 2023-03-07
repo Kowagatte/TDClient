@@ -1,19 +1,35 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://hi7iv73ebwe8"]
 
-[ext_resource path="res://scripts/CreateGameButton.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://scripts/creategamescreen.gd" id="1_8778w"]
+[ext_resource type="FontFile" uid="uid://dap64sbpa6nsy" path="res://resources/fonts/BitPotionExt.ttf" id="2_two2x"]
 
-[node name="Control" type="Control"]
+[node name="CreateGameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8778w")
 
-[node name="Button" type="Button" parent="."]
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+offset_right = 972.0
+offset_bottom = 712.0
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -178.0
-margin_top = -59.5
-margin_right = 178.0
-margin_bottom = 59.5
-text = "START GAME"
-script = ExtResource( 1 )
+offset_left = -195.0
+offset_top = -54.0
+offset_right = 195.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_two2x")
+theme_override_font_sizes/font_size = 64
+text = "Create Game"

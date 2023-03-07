@@ -27,6 +27,6 @@ func _process(_delta):
 	else:
 		direction.x = 0
 		
-	rpc_id(0, "control_player", direction.x, direction.y)
+	rpc_id(1, "control_player", direction.x, direction.y)
 
 @rpc func control_player(_x, _y): pass

@@ -12,11 +12,11 @@ func _ready():
 	
 
 func _create_button_pressed():
-	get_parent().get_parent().get_node("Server/Games").rpc_id(0, "createGame")
+	get_parent().get_parent().get_node("Server/Games").rpc_id(1, "createGame")
 	get_parent().remove_child(self)
 
 func _join_button_pressed():
-	get_parent().get_parent().get_node("Server/Games").rpc_id(0, "joinGame", code.text)
+	get_parent().get_parent().get_node("Server/Games").rpc_id(1, "joinGame", code.text)
 
 
 func message(rc, msg):

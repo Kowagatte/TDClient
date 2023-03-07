@@ -29,7 +29,8 @@ func ping():
 
 @rpc("any_peer")
 func response(response_code, message):
-	client.get_child(0).message(response_code, message)
+	if client.get_child_count() > 0:
+		client.get_child(0).message(response_code, message)
 
 @rpc("any_peer")
 func switchScenes(scene):

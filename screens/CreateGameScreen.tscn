@@ -17,19 +17,101 @@ layout_mode = 1
 offset_right = 972.0
 offset_bottom = 712.0
 
-[node name="Button" type="Button" parent="Panel"]
+[node name="CreateGameButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.256
+anchor_right = 0.5
+anchor_bottom = 0.256
+offset_left = -195.0
+offset_top = -54.272
+offset_right = 195.0
+offset_bottom = 53.728
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_two2x")
+theme_override_font_sizes/font_size = 64
+text = "Create Game"
+
+[node name="or" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -195.0
-offset_top = -54.0
-offset_right = 195.0
-offset_bottom = 54.0
+offset_left = -25.0
+offset_top = -36.5
+offset_right = 25.0
+offset_bottom = 36.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_two2x")
-theme_override_font_sizes/font_size = 64
-text = "Create Game"
+theme_override_font_sizes/font_size = 80
+text = "OR"
+
+[node name="Join" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.668
+anchor_right = 0.5
+anchor_bottom = 0.668
+offset_left = -79.5
+offset_top = -22.616
+offset_right = 79.5
+offset_bottom = 22.384
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_two2x")
+theme_override_font_sizes/font_size = 48
+text = "Enter Code:"
+
+[node name="GameCodeEdit" type="LineEdit" parent="Panel/Join"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.378
+anchor_right = 0.5
+anchor_bottom = 1.378
+offset_left = -78.5
+offset_top = -18.01
+offset_right = 79.5
+offset_bottom = 17.99
+theme_override_fonts/font = ExtResource("2_two2x")
+theme_override_font_sizes/font_size = 32
+placeholder_text = "code here"
+max_length = 8
+
+[node name="JoinGameButton" type="Button" parent="Panel/Join"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 2.378
+anchor_right = 0.5
+anchor_bottom = 2.378
+offset_left = -82.0
+offset_top = -18.01
+offset_right = 82.0
+offset_bottom = 17.99
+theme_override_fonts/font = ExtResource("2_two2x")
+theme_override_font_sizes/font_size = 32
+text = "Join Game"
+
+[node name="ErrorMessage" type="Label" parent="Panel/Join"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = 119.5
+offset_right = 110.0
+offset_bottom = 193.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_two2x")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1

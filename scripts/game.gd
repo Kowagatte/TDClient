@@ -17,3 +17,9 @@ func spawn_enemy(id):
 func _ready():
 	var gameid = get_node("scoreboard/gameID") as Label
 	gameid.text = "Game ID: " + self.name
+
+@rpc("any_peer")
+func updateScore(score):
+	get_node("scoreboard/playerOneScore").text = String.num_int64(score[0])
+	get_node("scoreboard/playerTwoScore").text = String.num_int64(score[1])
+	

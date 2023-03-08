@@ -13,7 +13,7 @@ var outer_wall = preload("res://nodes/walls/outer_wall.tscn")
 var spawn = preload("res://nodes/spawn.tscn")
 var coin = preload("res://nodes/coin.tscn")
 
-var spawns = [0,0]
+
 
 # Returns the preloaded node corrosponding to the given long text name
 func create_wall(wall_type):
@@ -57,11 +57,6 @@ func loadMap(map_path):
 			# Instantiates the wall from the given text
 			var w = create_wall(wall["wall"]).instantiate()
 			
-			if wall["wall"] == "player_one_spawn":
-				spawns[0] = w
-
-			if wall["wall"] == "player_two_spawn":
-				spawns[1] = w
 			# Centers the wall object on the cordinates specified
 			w.set_position(Vector2( (48*int(wall["x"]))+24 , (48*int(wall["y"]))+24 ))
 			# Rotates the wall as specified

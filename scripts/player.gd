@@ -5,7 +5,7 @@ var direction = Vector2(0, 0)
 func _ready():
 	self.name = String.num_int64(multiplayer.get_unique_id())
 
-@rpc("any_peer", "unreliable") func updatePos(x, y, rot):
+func updatePos(x, y, rot):
 	self.position.x = x
 	self.position.y = y
 	self.rotation_degrees = rot
@@ -27,6 +27,6 @@ func _process(_delta):
 	else:
 		direction.x = 0
 		
-	rpc_id(0, "control_player", direction.x, direction.y)
+	rpc_id(1, "control_player", direction.x, direction.y)
 
 @rpc func control_player(_x, _y): pass

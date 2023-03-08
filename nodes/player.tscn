@@ -15,6 +15,7 @@ size = Vector2(16, 16)
 motion_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.6, 0.898039, 0.211765, 1)
 texture = ExtResource("1_5m6l2")
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -12,7 +12,8 @@ func updatePos(x, y, rot):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-
+	if Input.is_action_pressed("death"):
+		print("Died")
 	if Input.is_action_pressed("move_up"):
 		direction.y = -1
 	elif Input.is_action_pressed("move_down"):

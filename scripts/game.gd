@@ -2,6 +2,8 @@ extends Node2D
 
 @rpc func ready_up(): pass
 
+var gameOver = false
+
 @rpc("any_peer", "unreliable_ordered")
 func update_pos(player, x, y, rot):
 	if has_node("map/players/%s" % player):
@@ -27,12 +29,20 @@ func sendState(state, _content):
 		starting.start()
 	elif state == "ended":
 		ended.visible = true
+		executeGameOver()
 	elif state == "started":
 		waiting.visible = false
 		starting.visible = false
 
+func executeGameOver():
+	gameOver = true
+	await get_tree().create_timer(2).timeout
+	get_parent().get_parent().get_parent().get_node("Client").changeScene(self, "res://screens/CreateGameScreen.tscn")
+	#get_parent().remove_child(self)
+	#call_deferred("free")
+
 func _ready():
-	var gameid = get_node("scoreboard/gameID") as Label
+	var gameid = get_node("Control/gameID") as Label
 	gameid.text = "Game ID: " + self.name
 
 @rpc("any_peer")

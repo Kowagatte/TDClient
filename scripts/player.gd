@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var direction = Vector2(0, 0)
+@onready var game = get_parent().get_parent().get_parent()
 
 func _ready():
 	self.name = String.num_int64(multiplayer.get_unique_id())
@@ -26,11 +27,12 @@ func _process(_delta):
 	else:
 		direction.x = 0
 	
+	if not game.gameOver:
+		rpc_id(1, "control_player", direction.x, direction.y)
+	
 	# Only here for testing, needs to be removed upon bullet implementation
 	if Input.is_action_just_released("death"):
 		rpc_id(1, "died")
-	
-	rpc_id(1, "control_player", direction.x, direction.y)
 
 @rpc func control_player(_x, _y): pass
 #temp, only for testing

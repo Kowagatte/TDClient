@@ -14,6 +14,20 @@ func spawn_enemy(id):
 	player.name = String.num_int64(id)
 	get_node("map/players").add_child(player)
 
+@rpc("any_peer")
+func sendState(state, _content):
+	var waiting = get_node("Control/waiting")
+	var starting = get_node("Control/starting")
+	
+	if state == "waitingForPlayer":
+		waiting.visible = true
+	elif state == "gameStarting":
+		waiting.visible = false
+		starting.start()
+	elif state == "started":
+		waiting.visible = false
+		starting.visible = false
+
 func _ready():
 	var gameid = get_node("scoreboard/gameID") as Label
 	gameid.text = "Game ID: " + self.name

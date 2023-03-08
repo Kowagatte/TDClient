@@ -18,12 +18,15 @@ func spawn_enemy(id):
 func sendState(state, _content):
 	var waiting = get_node("Control/waiting")
 	var starting = get_node("Control/starting")
+	var ended = get_node("Control/ended")
 	
 	if state == "waitingForPlayer":
 		waiting.visible = true
 	elif state == "gameStarting":
 		waiting.visible = false
 		starting.start()
+	elif state == "ended":
+		ended.visible = true
 	elif state == "started":
 		waiting.visible = false
 		starting.visible = false

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var direction = Vector2(0, 0)
+@onready var game = get_parent().get_parent().get_parent()
 
 func _ready():
 	self.name = String.num_int64(multiplayer.get_unique_id())
@@ -26,7 +27,8 @@ func _process(_delta):
 		direction.x = -1
 	else:
 		direction.x = 0
-		
-	rpc_id(1, "control_player", direction.x, direction.y)
+	
+	if not game.gameOver:
+		rpc_id(1, "control_player", direction.x, direction.y)
 
 @rpc func control_player(_x, _y): pass

@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bj6frnqjuirf2"]
+[gd_scene load_steps=7 format=3 uid="uid://csetetqd0g6t1"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_jiiyw"]
 [ext_resource type="Script" path="res://scripts/map.gd" id="2_4wu87"]
 [ext_resource type="PackedScene" uid="uid://dfaqp3y1xtmk7" path="res://nodes/player.tscn" id="3_l832m"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="4_cfh87"]
 [ext_resource type="FontFile" uid="uid://dap64sbpa6nsy" path="res://resources/fonts/BitPotionExt.ttf" id="5_a5ph3"]
-[ext_resource type="Script" path="res://nodes/starting.gd" id="6_4wm12"]
+[ext_resource type="Script" path="res://scripts/starting.gd" id="6_swgfx"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_jiiyw")
@@ -58,14 +58,6 @@ theme_override_fonts/font = ExtResource("5_a5ph3")
 theme_override_font_sizes/font_size = 80
 text = "0"
 
-[node name="gameID" type="Label" parent="scoreboard"]
-layout_mode = 0
-offset_right = 81.0
-offset_bottom = 17.0
-theme_override_fonts/font = ExtResource("5_a5ph3")
-theme_override_font_sizes/font_size = 32
-text = "Game ID: 00000000"
-
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -112,7 +104,7 @@ text = "Game starting in...
 10"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("6_4wm12")
+script = ExtResource("6_swgfx")
 
 [node name="Timer" type="Timer" parent="Control/starting"]
 
@@ -134,3 +126,10 @@ theme_override_colors/font_color = Color(0.847059, 0.231373, 0.27451, 1)
 theme_override_fonts/font = ExtResource("5_a5ph3")
 theme_override_font_sizes/font_size = 48
 text = "Game Over"
+
+[node name="gameID" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 224.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 24
+text = "Game ID: 00000000"

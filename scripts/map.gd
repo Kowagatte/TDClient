@@ -32,7 +32,7 @@ func create_wall(wall_type):
 			return middle_wall
 		"outer_wall":
 			return outer_wall
-		"spawn":
+		"player_one_spawn", "player_two_spawn":
 			return spawn
 		"coin":
 			return coin

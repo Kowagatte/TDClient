@@ -29,7 +29,7 @@ func _connected():
 	print("Connected to Server!")
 	
 func changeScene(current, scenePath):
-	remove_child(current)
+	current.get_parent().remove_child(current)
 	current.call_deferred("free")
 	var next_screen = load(scenePath)
 	add_child(next_screen.instantiate())

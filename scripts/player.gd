@@ -12,7 +12,6 @@ func updatePos(x, y, rot):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-
 	if Input.is_action_pressed("move_up"):
 		direction.y = -1
 	elif Input.is_action_pressed("move_down"):
@@ -26,7 +25,13 @@ func _process(_delta):
 		direction.x = -1
 	else:
 		direction.x = 0
-		
+	
+	# Only here for testing, needs to be removed upon bullet implementation
+	if Input.is_action_just_released("death"):
+		rpc_id(1, "died")
+	
 	rpc_id(1, "control_player", direction.x, direction.y)
 
 @rpc func control_player(_x, _y): pass
+#temp, only for testing
+@rpc func died(): pass

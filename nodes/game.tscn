@@ -21,6 +21,8 @@ script = ExtResource("2_4wu87")
 position = Vector2(-240, -248)
 script = ExtResource("4_cfh87")
 
+[node name="bullets" type="Node2D" parent="map"]
+
 [node name="scoreboard" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0

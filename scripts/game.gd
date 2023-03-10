@@ -10,11 +10,22 @@ func update_pos(player, x, y, rot):
 		var player_node = get_node("map/players/%s" % player)
 		player_node.updatePos(x, y, rot)
 
+@rpc("any_peer", "unreliable_ordered")
+func update_bullet(id, x, y, rot):
+	var node = "map/bullets/%s" % id
+	if has_node(node):
+		var bullet = get_node(node)
+		bullet.updatePos(x, y, rot)
+
 @rpc("any_peer")
 func spawn_enemy(id):
 	var player = load("res://nodes/enemy.tscn").instantiate()
 	player.name = String.num_int64(id)
 	get_node("map/players").add_child(player)
+	
+	var bullet = load("res://nodes/bullet.tscn").instantiate()
+	bullet.name = str(id)
+	get_node("map/bullets").add_child(bullet)
 
 @rpc("any_peer")
 func sendState(state, _content):
@@ -38,8 +49,6 @@ func executeGameOver():
 	gameOver = true
 	await get_tree().create_timer(2).timeout
 	get_parent().get_parent().get_parent().get_node("Client").changeScene(self, "res://screens/CreateGameScreen.tscn")
-	#get_parent().remove_child(self)
-	#call_deferred("free")
 
 func _ready():
 	var gameid = get_node("Control/gameID") as Label

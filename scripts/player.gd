@@ -5,6 +5,11 @@ var direction = Vector2(0, 0)
 
 func _ready():
 	self.name = String.num_int64(multiplayer.get_unique_id())
+	
+	var bullet = load("res://nodes/bullet.tscn").instantiate()
+	bullet.name = str(multiplayer.get_unique_id())
+	game.get_node("map/bullets").add_child(bullet)
+	
 
 func updatePos(x, y, rot):
 	self.position.x = x
@@ -13,6 +18,10 @@ func updatePos(x, y, rot):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	
+	if Input.is_action_just_released("shoot"):
+		rpc_id(1, "try_shoot")
+	
 	if Input.is_action_pressed("move_up"):
 		direction.y = -1
 	elif Input.is_action_pressed("move_down"):
@@ -36,5 +45,5 @@ func _process(_delta):
 		rpc_id(1, "died")
 
 @rpc func control_player(_x, _y): pass
-#temp, only for testing
-@rpc func died(): pass
+
+@rpc func try_shoot(): pass

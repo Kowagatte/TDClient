@@ -20,7 +20,7 @@ func update_bullet(id, x, y, rot):
 @rpc("any_peer")
 func spawn_enemy(id):
 	var player = load("res://nodes/enemy.tscn").instantiate()
-	player.name = String.num_int64(id)
+	player.name = str(id)
 	get_node("map/players").add_child(player)
 	
 	var bullet = load("res://nodes/bullet.tscn").instantiate()
@@ -53,9 +53,10 @@ func executeGameOver():
 func _ready():
 	var gameid = get_node("Control/gameID") as Label
 	gameid.text = "Game ID: " + self.name
+	$Control/gameID/copyID.pressed.connect(func _c(): DisplayServer.clipboard_set(self.name))
 
 @rpc("any_peer")
 func updateScore(score):
-	get_node("scoreboard/playerOneScore").text = String.num_int64(score[0])
-	get_node("scoreboard/playerTwoScore").text = String.num_int64(score[1])
+	get_node("scoreboard/playerOneScore").text = str(score[0])
+	get_node("scoreboard/playerTwoScore").text = str(score[1])
 	

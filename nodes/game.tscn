@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://csetetqd0g6t1"]
+[gd_scene load_steps=8 format=3 uid="uid://csetetqd0g6t1"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_jiiyw"]
 [ext_resource type="Script" path="res://scripts/map.gd" id="2_4wu87"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="4_cfh87"]
 [ext_resource type="FontFile" uid="uid://dap64sbpa6nsy" path="res://resources/fonts/BitPotionExt.ttf" id="5_a5ph3"]
 [ext_resource type="Script" path="res://scripts/starting.gd" id="6_swgfx"]
+[ext_resource type="Texture2D" uid="uid://r80h1miv6k63" path="res://resources/copy.png" id="7_sodr4"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_jiiyw")
@@ -135,3 +136,18 @@ offset_right = 224.0
 offset_bottom = 37.0
 theme_override_font_sizes/font_size = 24
 text = "Game ID: 00000000"
+
+[node name="copyID" type="Button" parent="Control/gameID"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.066
+anchor_top = 0.424
+anchor_right = 1.066
+anchor_bottom = 0.424
+offset_left = -11.784
+offset_top = -11.688
+offset_right = 508.216
+offset_bottom = 508.312
+scale = Vector2(0.045, 0.045)
+icon = ExtResource("7_sodr4")
+flat = true

@@ -1,6 +1,6 @@
 extends Node2D
 
-var ip = "127.0.0.1"
+var ip = "tds.damocles.ca"
 var port = 9696
 
 var enet = ENetMultiplayerPeer.new()

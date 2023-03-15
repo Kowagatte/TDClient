@@ -29,21 +29,20 @@ func spawn_enemy(id):
 
 @rpc("any_peer")
 func sendState(state, _content):
-	var waiting = get_node("Control/waiting")
-	var starting = get_node("Control/starting")
-	var ended = get_node("Control/ended")
-	
 	if state == "waitingForPlayer":
-		waiting.visible = true
+		$Control/waiting.visible = true
 	elif state == "gameStarting":
-		waiting.visible = false
-		starting.start()
+		$Control/waiting.visible = false
+		$Control/starting.start()
 	elif state == "ended":
-		ended.visible = true
+		$Control/ended.visible = true
 		executeGameOver()
+	elif state == "paused":
+		$Control/paused.visible = true
 	elif state == "started":
-		waiting.visible = false
-		starting.visible = false
+		$Control/waiting.visible = false
+		$Control/starting.visible = false
+		$Control/paused.visible = false
 
 func executeGameOver():
 	gameOver = true

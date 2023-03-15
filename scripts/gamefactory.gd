@@ -8,6 +8,14 @@ func gameJoined(id):
 	game.name = id
 	add_child(game)
 
+@rpc("any_peer")
+func sendGames(games):
+	pass
+
 @rpc func createGame(): pass
 
 @rpc func joinGame(_gameID): pass
+
+@rpc func requestInprogressGames(): pass
+
+@rpc func rejoinGame(_gameId): pass

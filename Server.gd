@@ -35,9 +35,3 @@ func response(response_code, message):
 @rpc("any_peer")
 func switchScenes(scene):
 	client.changeScene(client.get_child(0), "res://screens/%s.tscn" % scene)
-
-@rpc("any_peer")
-func gameCreated(id):
-	var game = game_inst.instantiate()
-	game.name = id
-	games.add_child(game)

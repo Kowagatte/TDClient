@@ -4,7 +4,7 @@ extends Node2D
 
 var gameOver = false
 
-@rpc("any_peer", "unreliable_ordered")
+@rpc("any_peer", "unreliable")
 func update_pos(player, x, y, rot):
 	if has_node("map/players/%s" % player):
 		var player_node = get_node("map/players/%s" % player)

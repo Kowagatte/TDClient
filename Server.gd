@@ -1,7 +1,10 @@
 extends Node2D
 
+@onready var settings = get_node("/root/Settings")
 @onready var client = get_parent().get_node("Client")
 @onready var games = get_node("Games")
+
+var server_version = ""
 
 var game_inst = preload("res://nodes/game.tscn")
 
@@ -35,3 +38,11 @@ func response(response_code, message):
 @rpc("any_peer")
 func switchScenes(scene):
 	client.changeScene(client.get_child(0), "res://screens/%s.tscn" % scene)
+
+@rpc("any_peer")
+func receiveVersion(version):
+	server_version = version
+	if settings.version != version:
+		# Disconnect and display version incompatability
+		client.multiplayer_api.multiplayer_peer.close()
+		switchScenes("IncompatibleScreen")

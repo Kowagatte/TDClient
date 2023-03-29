@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://cks6uf47qsf5b"]
+
+[ext_resource type="FontFile" uid="uid://dap64sbpa6nsy" path="res://resources/fonts/BitPotionExt.ttf" id="1_ayv6t"]
+[ext_resource type="Script" path="res://scripts/incompatiblescreen.gd" id="1_t5tou"]
+
+[node name="IncompatibleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t5tou")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 972.0
+offset_bottom = 712.0
+
+[node name="message" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.5
+offset_top = -39.0
+offset_right = 113.5
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_ayv6t")
+theme_override_font_sizes/font_size = 48
+text = "Incompatible Game Version...
+Expected: %s
+Received:  %s"
+horizontal_alignment = 1
+vertical_alignment = 1

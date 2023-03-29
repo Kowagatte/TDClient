@@ -1,21 +1,19 @@
 extends Node2D
 
-var ip = "tds.damocles.ca"
-var port = 9696
-
 var enet = ENetMultiplayerPeer.new()
 var multiplayer_api: MultiplayerAPI
+
+@onready var settings = get_node("/root/Settings")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
 	var server = get_parent().get_node("Server")
 	
-	enet.create_client(ip, port)
+	enet.create_client(settings.ip, settings.port)
 	multiplayer_api = MultiplayerAPI.create_default_interface()
 	get_tree().set_multiplayer(multiplayer_api, server.get_path())
 	multiplayer_api.multiplayer_peer = enet
-	
 	
 	multiplayer_api.connected_to_server.connect(_connected)
 	

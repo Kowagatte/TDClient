@@ -9,7 +9,7 @@ func gameJoined(id):
 	add_child(game)
 
 @rpc("any_peer")
-func sendGames(games):
+func sendGames(_games):
 	pass
 
 @rpc func createGame(): pass

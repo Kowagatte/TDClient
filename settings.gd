@@ -1,7 +1,6 @@
 extends Node
 
-#var ip = "tds.damocles.ca"
-var ip = "127.0.0.1"
-var port = 9697
+var ip = "tds.damocles.ca"
+var port = 9696
 
-var version = "v0.1.0-beta"
+var version = "v0.3.0-beta"

@@ -38,7 +38,6 @@ func _process(_delta):
 	
 	if not game.gameOver:
 		rpc_id(1, "control_player", direction.x, direction.y)
-
 	
 	# Only here for testing, needs to be removed upon bullet implementation
 	if Input.is_action_just_released("death"):
